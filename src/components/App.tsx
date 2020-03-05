@@ -6,31 +6,36 @@ import {
   Route,
   Link
 } from "react-router-dom";
-
+import { LinkContainer } from 'react-router-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <header className="App-header">
-          <h1>PID Services Registry</h1>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/services">Services</Link>
-              </li>
-            </ul>
-          </nav>
+          <Navbar bg="dark" variant="dark">
+            <LinkContainer to="/">
+              <Navbar.Brand>PID Services Registry</Navbar.Brand>
+            </LinkContainer>
+            <Nav className="mr-auto">
+              <LinkContainer exact to="/">
+                <Nav.Link>Home</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/services">
+                <Nav.Link>Services</Nav.Link>
+              </LinkContainer>
+            </Nav>
+          </Navbar>
         </header>
 
         <Switch>
           <Route path="/services">
             <Services />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
           </Route>
         </Switch>
