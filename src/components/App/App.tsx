@@ -3,12 +3,12 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import { LinkContainer } from 'react-router-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import Search from '../Search/Search';
 
 function App() {
   return (
@@ -48,7 +48,12 @@ function Home() {
 }
 
 function Services() {
-  return <h2>Services</h2>;
+  return (
+    <div>
+    <h2>Services</h2>
+    <Search></Search>
+    </div>
+  );
 }
 
 export default App;
