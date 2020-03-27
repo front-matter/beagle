@@ -1,0 +1,13 @@
+.Search {
+    margin-top: 1em;
+}
+
+.Search-results {
+    margin-top: 2em;
+}
+
+.Search-results ul {
+    list-style: none;
+    padding-left: 1em;
+}
+

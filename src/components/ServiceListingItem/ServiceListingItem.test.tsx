@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 import ServiceListingItem from './ServiceListingItem';
 
 const exampleService = {
+    id: "1",
     name: "Example service",
     description: "Exampe description of the service.",
     url: "http://example.com",

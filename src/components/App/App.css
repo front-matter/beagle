@@ -1,11 +1,7 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-
-}
-
-.App-header {
 
 }
