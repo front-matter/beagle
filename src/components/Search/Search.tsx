@@ -9,10 +9,6 @@ type Props = {
 
 };
 
-type State = {
-
-};
-
 const exampleService: Service = {
     name: "Example service",
     description: "Exampe description of the service.",
@@ -20,10 +16,8 @@ const exampleService: Service = {
     organization: "Example Inc"
 }
 
-class Search extends React.Component<Props, State> {
-
-    render() {
-        return (
+const Search: React.FunctionComponent<Props> = () => {
+    return (
         <div>
             <Form inline>
                 <FormControl type="text" placeholder="Search" />
@@ -33,8 +27,7 @@ class Search extends React.Component<Props, State> {
             <ServiceListingItem service={exampleService}></ServiceListingItem>
             <ServiceListingItem service={exampleService}></ServiceListingItem>
         </div>
-        );
-    }
+    );
 }
 
 export default Search;

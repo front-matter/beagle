@@ -17,18 +17,15 @@ type State = {
 
 };
 
-class ServiceListingItem extends React.Component<Props, State> {
-
-    render() {
-        return (
+const ServiceListingItem: React.FunctionComponent<Props> = ({service}) => {
+    return (
         <div>
-            <h3>{this.props.service.name}</h3>
-            <p>{this.props.service.description}</p>
-            <p>{this.props.service.url}</p>
-            <p>{this.props.service.organization}</p>
+            <h3>{service.name}</h3>
+            <p>{service.description}</p>
+            <p>{service.url}</p>
+            <p>{service.organization}</p>
         </div>
-        );
-    }
+    )
 }
 
 export default ServiceListingItem;
