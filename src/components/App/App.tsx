@@ -1,17 +1,28 @@
 import React from 'react';
 import './App.css';
+
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
 import { LinkContainer } from 'react-router-bootstrap';
+
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
+
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+
 import Search from '../Search/Search';
+
+const client = new ApolloClient({
+  uri: 'https://api.test.datacite.org/graphql',
+});
 
 function App() {
   return (
+    <ApolloProvider client={client}>
     <Router>
       <div className="App">
         <header className="App-header">
@@ -40,6 +51,7 @@ function App() {
         </Switch>
       </div>
     </Router>
+    </ApolloProvider>
   );
 }
 
