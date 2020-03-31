@@ -4,7 +4,7 @@ export interface Service {
     id: string,
     name: string;
     description: string;
-    organization: string;
+    creators: string[];
 }
 
 type Props = {
@@ -21,7 +21,7 @@ const ServiceListingItem: React.FunctionComponent<Props> = ({service}) => {
             <h3>{service.name}</h3>
             <p>{service.description}</p>
             <p><a href={service.id}>Access Service</a></p>
-            <p>Provided by: {service.organization}</p>
+            <p>Provided by: {service.creators.join(", ")}</p>
         </div>
     )
 }

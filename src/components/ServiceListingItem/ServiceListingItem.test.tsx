@@ -5,8 +5,8 @@ import ServiceListingItem from './ServiceListingItem';
 const exampleService = {
     id: "http://example.com/1234",
     name: "Example service",
-    description: "Exampe description of the service.",
-    organization: "Example Inc"
+    description: "Example description of the service.",
+    creators: ["Example Inc"]
 }
 
 test('renders service details', () => {
@@ -14,6 +14,6 @@ test('renders service details', () => {
 
   expect(getByText("Example service")).toBeInTheDocument();
   expect(getByText("Access Service").closest('a')).toHaveAttribute('href', 'http://example.com/1234');
-  expect(getByText("Exampe description of the service.")).toBeInTheDocument();
+  expect(getByText("Example description of the service.")).toBeInTheDocument();
   expect(getByText("Provided by: Example Inc")).toBeInTheDocument();
 });
