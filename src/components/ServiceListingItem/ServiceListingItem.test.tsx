@@ -3,10 +3,9 @@ import { render } from '@testing-library/react';
 import ServiceListingItem from './ServiceListingItem';
 
 const exampleService = {
-    id: "1",
+    id: "http://example.com/1234",
     name: "Example service",
     description: "Exampe description of the service.",
-    url: "http://example.com",
     organization: "Example Inc"
 }
 
@@ -14,7 +13,7 @@ test('renders service details', () => {
   const { getByText } = render(<ServiceListingItem service={exampleService}/>);
 
   expect(getByText("Example service")).toBeInTheDocument();
+  expect(getByText("Access Service").closest('a')).toHaveAttribute('href', 'http://example.com/1234');
   expect(getByText("Exampe description of the service.")).toBeInTheDocument();
-  expect(getByText("http://example.com")).toBeInTheDocument();
-  expect(getByText("Example Inc")).toBeInTheDocument();
+  expect(getByText("Provided by: Example Inc")).toBeInTheDocument();
 });
