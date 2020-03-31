@@ -9,7 +9,11 @@ import {
 import { LinkContainer } from 'react-router-bootstrap';
 
 import { ApolloProvider } from '@apollo/react-hooks';
-import ApolloClient from 'apollo-boost';
+import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { HttpLink } from 'apollo-link-http';
+import { onError } from 'apollo-link-error';
+import { ApolloLink } from 'apollo-link';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -17,14 +21,29 @@ import Nav from 'react-bootstrap/Nav';
 import Search from '../Search/Search';
 
 const client = new ApolloClient({
-  uri: 'https://api.test.datacite.org/graphql',
+  link: ApolloLink.from([
+    onError(({ graphQLErrors, networkError }) => {
+      if (graphQLErrors)
+        graphQLErrors.forEach(({ message, locations, path }) =>
+          console.log(
+            `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+          ),
+        );
+      if (networkError) console.log(`[Network error]: ${networkError}`);
+    }),
+    new HttpLink({
+      uri: 'https://api.test.datacite.org/graphql',
+      credentials: 'same-origin'
+    })
+  ]),
+  cache: new InMemoryCache()
 });
 
 function App() {
   return (
     <ApolloProvider client={client}>
     <Router>
-      <div className="App container">
+      <div className="App">
         <header className="App-header">
           <Navbar bg="dark" variant="dark">
             <LinkContainer to="/">
