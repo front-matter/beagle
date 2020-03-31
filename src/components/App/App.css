@@ -2,6 +2,10 @@
   text-align: left;
 }
 
+.App-header {
+  margin-bottom: 1em;
+}
+
 @media (prefers-reduced-motion: no-preference) {
 
 }

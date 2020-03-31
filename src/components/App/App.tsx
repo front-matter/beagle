@@ -24,7 +24,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
     <Router>
-      <div className="App">
+      <div className="App container">
         <header className="App-header">
           <Navbar bg="dark" variant="dark">
             <LinkContainer to="/">
