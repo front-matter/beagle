@@ -14,8 +14,15 @@ type Props = {
 
 interface ServiceQueryResult {
     id: string;
+    totalCount: number;
     titles: [{
         title: string
+    }]
+    descriptions: [{
+        description: string
+    }]
+    creators: [{
+        name: string
     }]
 }
 
@@ -31,15 +38,22 @@ interface ServiceQueryVar {
 
 const SERVICES_GQL = gql`
 query getServicesQuery($query: String!) {
-    services(query: $query) {
-      nodes {
-        id,
-        titles {
-          title
+    services(clientId: "datacite.services", query: $query) {
+        nodes {
+            id
+            titles {
+                title
+            }
+            descriptions {
+                description
+                descriptionType
+            }
+            creators {
+                name
+            }
         }
-      }
     }
-  }
+}
 `;
 
 const Search: React.FunctionComponent<Props> = () => {
@@ -59,17 +73,31 @@ const Search: React.FunctionComponent<Props> = () => {
 
         const results: Service[] = [];
         if(data) {
-            data.services.nodes.map(dataset => (
+            data.services.nodes.map(dataset =>  {
+                let name = "No Title";
+                if (dataset.titles.length > 0) {
+                    name = dataset.titles[0].title;
+                }
+
+                let description = "";
+                if (dataset.descriptions.length > 0) {
+                    description =  dataset.descriptions[0].description;
+                }
+                let creators = [""];
+                creators = dataset.creators.map(c => c.name);
+
                 results.push(
                     {
                         id: dataset.id,
-                        name: dataset.titles[0].title,
-                        description: "Example description of the service.",
-                        url: "http://example.com",
-                        organization: "Example Inc"
+                        name: name,
+                        description: description,
+                        creators: creators
                     }
-                )
-            ))
+                );
+
+                return results;
+                }
+            )
         }
         setSearchResults(results);
     }, [searchQuery, data, refetch]);
@@ -79,6 +107,7 @@ const Search: React.FunctionComponent<Props> = () => {
         if (error) return <p>Error :(</p>;
 
         return <div className="Search-results">
+            <p>Num services: {searchResults.length}</p>
             <ul>
             {searchResults.map(item => (
                 <li key={item.id}>
