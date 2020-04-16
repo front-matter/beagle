@@ -38,7 +38,7 @@
     after_success:
       # Send release information to Sentry
       - if [ "$AUTO_DEPLOY" == "true" ]; then
-          GIT_TAG=$(git describe --tags $(git rev-list --tags --max-count=1));
+          GIT_TAG=$(git describe --tags --always $(git rev-list --tags --max-count=1));
           sentry-cli releases new beagle:${GIT_TAG} --finalize --project beagle;
 
           if [ "${TRAVIS_TAG?}" ]; then
