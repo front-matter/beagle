@@ -35,20 +35,20 @@
       - yarn build
       - yarn test
 
-    # after_success:
-    #   # Send release information to Sentry
-    #   - if [ "$AUTO_DEPLOY" == "true" ]; then
-    #       GIT_TAG=$(git describe --tags --always $(git rev-list --tags --max-count=1));
-    #       sentry-cli releases new beagle:${GIT_TAG} --finalize --project beagle;
+    after_success:
+      # Send release information to Sentry
+      - if [ "$AUTO_DEPLOY" == "true" ]; then
+          GIT_TAG=$(git describe --tags --always $(git rev-list --tags --max-count=1));
+          sentry-cli releases new beagle:${GIT_TAG} --finalize --project beagle;
 
-    #       if [ "${TRAVIS_TAG?}" ]; then
-    #         sentry-cli releases deploys beagle:${GIT_TAG} new -e production;
-    #       else
-    #         sentry-cli releases deploys beagle:${GIT_TAG} new -e stage;
-    #       fi
+          if [ "${TRAVIS_TAG?}" ]; then
+            sentry-cli releases deploys beagle:${GIT_TAG} new -e production;
+          else
+            sentry-cli releases deploys beagle:${GIT_TAG} new -e stage;
+          fi
 
-    #       sentry-cli releases set-commits --auto beagle:${GIT_TAG};
-    #     fi
+          sentry-cli releases set-commits --auto beagle:${GIT_TAG};
+        fi
 
     deploy:
       provider: s3
