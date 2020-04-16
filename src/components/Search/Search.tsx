@@ -38,7 +38,7 @@ interface ServiceQueryVar {
 
 const SERVICES_GQL = gql`
 query getServicesQuery($query: String!) {
-    services(clientId: "datacite.services", query: $query) {
+    services(repositoryId: "datacite.services", query: $query) {
         nodes {
             id
             titles {
