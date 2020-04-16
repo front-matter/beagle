@@ -9,17 +9,17 @@
     before_install:
       - set -e
       - if [ "${TRAVIS_TAG?}" ]; then
-          AWS_BUCKET="pidservices.datacite.org";
+          AWS_BUCKET="pidservices.org";
           cp .env.production .env;
           AUTO_DEPLOY=true;
         elif [ "$TRAVIS_BRANCH" == "master" ]; then
-          AWS_BUCKET="pidservices.stage.datacite.org";
+          AWS_BUCKET="stage.pidservices.org";
           CLOUDFRONT_DISTRIBUTION_ID=$CLOUDFRONT_DISTRIBUTION_ID_STAGE;
           cp .env.stage .env;
           AUTO_DEPLOY=true;
         else
           AUTO_DEPLOY=false;
-          AWS_BUCKET="pidservices.stage.datacite.org";
+          AWS_BUCKET="stage.pidservices.org";
         fi
       - npm config set spin false
       - curl -o- -L https://yarnpkg.com/install.sh | bash
