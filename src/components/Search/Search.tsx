@@ -120,8 +120,8 @@ const Search: React.FunctionComponent<Props> = () => {
 
     return (
         <div className="Search">
-            <Form key="search" inline>
-                <FormControl onChange={onSearchChange} type="text" placeholder="Search" value={searchQuery} />
+            <Form key="search">
+                <FormControl onChange={onSearchChange} size="lg" type="text" placeholder="Search" value={searchQuery} />
             </Form>
 
             {renderResults()}

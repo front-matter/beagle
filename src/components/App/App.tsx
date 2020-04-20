@@ -61,12 +61,14 @@ function App() {
         </header>
 
         <Switch>
-          <Route path="/services">
-            <Services />
-          </Route>
-          <Route exact path="/">
-            <Home />
-          </Route>
+          <div className="container">
+            <Route path="/services">
+              <Services />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+          </div>
         </Switch>
       </div>
     </Router>
