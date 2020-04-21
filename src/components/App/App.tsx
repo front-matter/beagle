@@ -60,7 +60,7 @@ function App() {
           </Navbar>
         </header>
 
-        <div className="container">>
+        <div className="container">
         <Switch>
             <Route path="/services">
               <Services />
