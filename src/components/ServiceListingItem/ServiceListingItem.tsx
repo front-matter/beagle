@@ -25,9 +25,9 @@ const ServiceListingItem: React.FunctionComponent<Props> = ({service}) => {
             <Card.Title>{service.name}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">{service.creators.join(", ")}</Card.Subtitle>
             <Card.Text>
-                <p>{service.description}</p>
+                {service.description}
             </Card.Text>
-            <Card.Link href="{service.id}">Access Service</Card.Link>
+            <Card.Link href={service.id}>Access Service</Card.Link>
             </Card.Body>
         </Card>
     )

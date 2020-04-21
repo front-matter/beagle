@@ -60,16 +60,16 @@ function App() {
           </Navbar>
         </header>
 
+        <div className="container">>
         <Switch>
-          <div className="container">
             <Route path="/services">
               <Services />
             </Route>
             <Route exact path="/">
               <Home />
             </Route>
-          </div>
         </Switch>
+        </div>
       </div>
     </Router>
     </ApolloProvider>

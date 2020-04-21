@@ -13,7 +13,7 @@ test('renders service details', () => {
   const { getByText } = render(<ServiceListingItem service={exampleService}/>);
 
   expect(getByText("Example service")).toBeInTheDocument();
+  expect(getByText("Example Inc")).toBeInTheDocument();
   expect(getByText("Access Service").closest('a')).toHaveAttribute('href', 'http://example.com/1234');
   expect(getByText("Example description of the service.")).toBeInTheDocument();
-  expect(getByText("Provided by: Example Inc")).toBeInTheDocument();
 });
