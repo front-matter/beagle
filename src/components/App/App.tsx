@@ -7,7 +7,6 @@ import {
   Route
 } from "react-router-dom";
 import { LinkContainer } from 'react-router-bootstrap';
-import Image from 'react-bootstrap/Image'
 
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-client';
