@@ -47,7 +47,7 @@ function App() {
         <header className="App-header">
           <Navbar bg="dark" variant="dark">
             <LinkContainer to="/">
-              <Navbar.Brand>PID Services Registry</Navbar.Brand>
+              <Navbar.Brand data-testid="navbar-brand">PID Services Registry</Navbar.Brand>
             </LinkContainer>
             <Nav className="mr-auto">
               <LinkContainer exact to="/">
