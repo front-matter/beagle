@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
 import { Service } from '../ServiceListingItem/ServiceListingItem';
 import ServiceListingItem from '../ServiceListingItem/ServiceListingItem';
 import { useQuery } from '@apollo/react-hooks';
@@ -26,32 +27,52 @@ interface ServiceQueryResult {
     }]
 }
 
+interface PageInfo {
+    endCursor: string;
+    hasNextPage: boolean;
+}
+
+interface ServiceEdge {
+    node: ServiceQueryResult
+}
+
 interface ServiceQueryData {
     services: {
-        nodes: ServiceQueryResult[];
+        __typename: String;
+        edges: ServiceEdge[];
+        pageInfo: PageInfo;
+        totalCount: Number;
     },
 }
 
 interface ServiceQueryVar {
     query: string;
+    cursor: string;
 }
 
 const SERVICES_GQL = gql`
-query getServicesQuery($query: String!) {
-    services(repositoryId: "datacite.services", query: $query) {
-        nodes {
-            id
-            titles {
-                title
+query getServicesQuery($query: String!, $cursor: String) {
+    services(first: 25, query: $query, after: $cursor) {
+        edges {
+            node {
+                id
+                titles {
+                    title
+                }
+                descriptions {
+                    description
+                    descriptionType
+                }
+                creators {
+                    name
+                }
             }
-            descriptions {
-                description
-                descriptionType
-            }
-            creators {
-                name
-            }
-        }
+        },
+        pageInfo {
+            endCursor,
+            hasNextPage
+        },
+        totalCount
     }
 }
 `;
@@ -59,21 +80,46 @@ query getServicesQuery($query: String!) {
 const Search: React.FunctionComponent<Props> = () => {
     const [searchQuery, setSearchQuery] = React.useState("");
     const [searchResults, setSearchResults] = React.useState<Service[]>([]);
-    const { loading, error, data, refetch } = useQuery<ServiceQueryData, ServiceQueryVar>(
+    const { loading, error, data, refetch, fetchMore } = useQuery<ServiceQueryData, ServiceQueryVar>(
         SERVICES_GQL,
-        { variables: { query: "" }
+        { variables: { query: "", cursor: "" }
     })
 
     const onSearchChange = (e: React.FormEvent<HTMLInputElement>): void => {
         setSearchQuery(e.currentTarget.value);
     };
 
+    const loadMore = (cursor: String) => {
+        fetchMore(
+            { variables: { cursor: cursor },
+            updateQuery: (previousResult: ServiceQueryData, { fetchMoreResult }) => {
+                if (!fetchMoreResult) { return previousResult; }
+
+                const newEdges = fetchMoreResult.services.edges;
+                const pageInfo = fetchMoreResult.services.pageInfo;
+                const totalCount = fetchMoreResult.services.totalCount;
+
+                return newEdges.length
+                    ? {
+                        services: {
+                            __typename: previousResult.services.__typename,
+                            edges: [...previousResult.services.edges, ...newEdges],
+                            pageInfo,
+                            totalCount,
+                        }
+                    }
+                    : previousResult;
+            }
+        })
+    }
+
     React.useEffect(() => {
-        refetch({ query: searchQuery})
+        refetch({ query: searchQuery, cursor: ""})
 
         const results: Service[] = [];
         if(data) {
-            data.services.nodes.map(dataset =>  {
+            data.services.edges.map(edge =>  {
+                let dataset = edge.node;
                 let name = "No Title";
                 if (dataset.titles.length > 0) {
                     name = dataset.titles[0].title;
@@ -106,8 +152,12 @@ const Search: React.FunctionComponent<Props> = () => {
         if (loading) return <p>Loading...</p>;
         if (error) return <p>Error :(</p>;
 
-        return <div className="Search-results">
-            <p>Num services: {searchResults.length}</p>
+        if (!data ) return '';
+
+        return (
+        <div className="Search-results">
+            <p>Num services: {data.services.totalCount}</p>
+            {/* <ul onScroll={onScroll}> */}
             <ul>
             {searchResults.map(item => (
                 <li key={item.id}>
@@ -115,7 +165,14 @@ const Search: React.FunctionComponent<Props> = () => {
                 </li>
             ))}
             </ul>
+
+            {data.services.pageInfo.hasNextPage &&
+            <div>
+                <Button variant="secondary" onClick={() => loadMore(data.services.pageInfo.endCursor)} block>Show more</Button>
+            </div>
+            }
         </div>
+        )
     }
 
     return (
