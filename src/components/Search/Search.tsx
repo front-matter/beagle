@@ -2,7 +2,6 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
-import { Service } from '../ServiceListingItem/ServiceListingItem';
 import ServiceListingItem from '../ServiceListingItem/ServiceListingItem';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -13,8 +12,17 @@ type Props = {
 
 };
 
+export interface Service {
+    id: string;
+    doi: string;
+    name: string;
+    description: string;
+    creators: string[];
+}
+
 interface ServiceQueryResult {
     id: string;
+    doi: string;
     totalCount: number;
     titles: [{
         title: string
@@ -56,6 +64,7 @@ query getServicesQuery($query: String!, $cursor: String) {
         edges {
             node {
                 id
+                doi
                 titles {
                     title
                 }
@@ -135,6 +144,7 @@ const Search: React.FunctionComponent<Props> = () => {
                 results.push(
                     {
                         id: dataset.id,
+                        doi: dataset.doi,
                         name: name,
                         description: description,
                         creators: creators

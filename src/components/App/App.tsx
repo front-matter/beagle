@@ -19,6 +19,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
 import Search from '../Search/Search';
+import ServiceOverview from '../ServiceOverview/ServiceOverview';
 
 const client = new ApolloClient({
   link: ApolloLink.from([
@@ -63,8 +64,11 @@ function App() {
         <main role="main" className="App-main flex-shrink-0">
           <div className="container">
           <Switch>
-              <Route path="/services">
+              <Route exact path="/services">
                 <Services />
+              </Route>
+              <Route path="/services/:serviceId+">
+                <ServiceOverview />
               </Route>
               <Route exact path="/">
                 <Home />

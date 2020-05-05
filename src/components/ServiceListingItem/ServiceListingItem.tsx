@@ -1,14 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-
+import { Service } from '../Search/Search';
 import './ServiceListingItem.css';
-
-export interface Service {
-    id: string,
-    name: string;
-    description: string;
-    creators: string[];
-}
 
 type Props = {
     service: Service;
@@ -22,7 +15,7 @@ const ServiceListingItem: React.FunctionComponent<Props> = ({service}) => {
     return (
         <Card>
             <Card.Body>
-            <Card.Title>{service.name}</Card.Title>
+            <Card.Title><a href={"/services/" + service.doi}>{service.name}</a></Card.Title>
             <Card.Subtitle className="mb-2 text-muted">{service.creators.join(", ")}</Card.Subtitle>
             <Card.Text>
                 {service.description}

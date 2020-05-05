@@ -4,6 +4,7 @@ import ServiceListingItem from './ServiceListingItem';
 
 const exampleService = {
     id: "http://example.com/1234",
+    doi: "1234",
     name: "Example service",
     description: "Example description of the service.",
     creators: ["Example Inc"]
