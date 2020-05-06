@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 import { Card } from 'react-bootstrap';
-import { Service } from '../Search/Search';
+import { Service } from '../types';
 
 import './ServiceOverview.css';
 

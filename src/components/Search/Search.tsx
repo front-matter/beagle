@@ -5,20 +5,13 @@ import Button from 'react-bootstrap/Button';
 import ServiceListingItem from '../ServiceListingItem/ServiceListingItem';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import { Service } from '../types';
 
 import './Search.css';
 
 type Props = {
 
 };
-
-export interface Service {
-    id: string;
-    doi: string;
-    name: string;
-    description: string;
-    creators: string[];
-}
 
 interface ServiceQueryResult {
     id: string;

@@ -1,6 +1,6 @@
 import React from 'react';
+import { Service } from '../types';
 import { Card } from 'react-bootstrap';
-import { Service } from '../Search/Search';
 import './ServiceListingItem.css';
 
 type Props = {
