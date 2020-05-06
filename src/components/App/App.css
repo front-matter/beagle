@@ -1,13 +1,25 @@
 body {
-  background: #F5F5F5;
+  background: #fff;
+  font-family: "Avenir Next", sans-serif;
 }
 
+a {
+  color: #0404B4;
+}
+
+.brand-highlight {
+  color: #a6dee3;
+}
+
+/* color: #a6dee3; */
 .App {
   text-align: left;
 }
 
 .App-header {
   margin-bottom: 1em;
+  background-color: #fff;
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.25);
 }
 
 .App-main {
@@ -15,7 +27,8 @@ body {
 }
 
 .App-footer {
-  background-color: #f5f5f5;
+  font-size: 12px;
+  background-color: #d9d9d9;;
 }
 
 .footer > .container {

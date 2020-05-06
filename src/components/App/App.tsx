@@ -46,9 +46,9 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          <Navbar bg="dark" variant="dark">
+          <Navbar>
             <LinkContainer to="/">
-              <Navbar.Brand data-testid="navbar-brand">PID Services Registry</Navbar.Brand>
+              <Navbar.Brand data-testid="navbar-brand"><span className="brand-highlight">PID</span> Services Registry</Navbar.Brand>
             </LinkContainer>
             <Nav className="mr-auto">
               <LinkContainer exact to="/">
@@ -78,7 +78,7 @@ function App() {
         </main>
 
         <footer className="App-footer mt-auto py-3">
-          <div className="container text-muted">
+          <div className="container">
             <div className="row">
               <div className="col-sm-6">
               <p>
