@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import {
     useParams
 } from "react-router-dom";
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import { Card } from 'react-bootstrap';
+import { Container, Row, Col, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { Service } from '../types';
 
 import './ServiceOverview.css';
@@ -58,6 +58,7 @@ query getServiceQuery($id: ID!) {
 
 const ServiceOverview: React.FunctionComponent = () => {
     let { serviceId } = useParams<ParamTypes>();
+    const inputEl = useRef<HTMLInputElement & FormControl>(null);
 
     const fullId = (process.env.NODE_ENV === "production") ? "https://doi.org/" + serviceId : "https://handle.test.datacite.org/" + serviceId;
 
@@ -70,6 +71,13 @@ const ServiceOverview: React.FunctionComponent = () => {
         }
     })
 
+    const copyToClipboard = (e: React.FormEvent<HTMLButtonElement>): void => {
+
+        if(inputEl && inputEl.current) {
+            inputEl.current.select();
+            document.execCommand('copy');
+        }
+    };
 
     React.useEffect(() => {
         refetch({ id: fullId})
@@ -110,19 +118,38 @@ const ServiceOverview: React.FunctionComponent = () => {
     if (!service ) return <p>Service not found.</p>;
 
     return (
-        <div>
-            <a href="/services">Services</a>
-            <h1>Service ID: {serviceId}</h1>
-            <Card>
-                <Card.Body>
-                <Card.Title>{service.name}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{service.creators.join(", ")}</Card.Subtitle>
-                <Card.Text>
-                    {service.description}
-                </Card.Text>
-                <Card.Link href={service.id}>Access Service</Card.Link>
-                </Card.Body>
-            </Card>
+        <div className="ServiceOverview">
+            <h1>{service.name}</h1>
+            <Container className="content">
+                <Row>
+                    <Col sm={8}>
+                        {service.description}
+                    </Col>
+                    <Col className="text-right" sm={4}>
+                        <ul>
+                            <li><Button href={service.id}>Access Service</Button></li>
+                            <li>
+                                <InputGroup>
+                                <InputGroup.Prepend><InputGroup.Text>DOI:</InputGroup.Text></InputGroup.Prepend>
+                                <FormControl
+                                value={service.doi}
+                                ref={inputEl}
+                                readOnly
+                                aria-label="doi"
+                                aria-describedby="doi"
+                                />
+                                <InputGroup.Append>
+                                    <Button onClick={copyToClipboard} variant="outline-secondary">Copy</Button>
+                                </InputGroup.Append>
+                            </InputGroup>
+                            </li>
+                        </ul>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>Provided by: {service.creators.join(", ")}</Col>
+                </Row>
+            </Container>
         </div>
     )
 }
