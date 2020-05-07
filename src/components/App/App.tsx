@@ -19,6 +19,8 @@ import { Container, Row, Col, Navbar, Nav } from 'react-bootstrap';
 
 import Search from '../Search/Search';
 import ServiceOverview from '../ServiceOverview/ServiceOverview';
+import Error from '../Error/Error';
+
 
 const client = new ApolloClient({
   link: ApolloLink.from([
@@ -71,6 +73,9 @@ function App() {
               </Route>
               <Route exact path="/">
                 <Home />
+              </Route>
+              <Route path="*">
+                <Error title="Not found" message="The page you are looking for can not be found." />
               </Route>
           </Switch>
           </div>

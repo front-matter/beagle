@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import ServiceListingItem from '../ServiceListingItem/ServiceListingItem';
+import Error from '../Error/Error';
+
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Service } from '../types';
@@ -153,7 +155,8 @@ const Search: React.FunctionComponent<Props> = () => {
 
     const renderResults = () => {
         if (loading) return <p>Loading...</p>;
-        if (error) return <p>Error :(</p>;
+
+        if (error) return <Error title="Something went wrong." message="Unable to load services." />;
 
         if (!data ) return '';
 

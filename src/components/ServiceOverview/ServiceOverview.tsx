@@ -1,12 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import {
     useParams
 } from "react-router-dom";
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-
 import { Container, Row, Col, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { Service } from '../types';
+import Error from '../Error/Error';
+
 
 import './ServiceOverview.css';
 
@@ -113,7 +114,10 @@ const ServiceOverview: React.FunctionComponent = () => {
     }, [fullId, data, refetch]);
 
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
+
+    if (error) {
+        return <Error title="No Service" message="Unable to retrieve service" />
+    }
 
     if (!service ) return <p>Service not found.</p>;
 
