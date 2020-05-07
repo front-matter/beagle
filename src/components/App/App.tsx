@@ -15,8 +15,7 @@ import { HttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import { Container, Row, Col, Navbar, Nav } from 'react-bootstrap';
 
 import Search from '../Search/Search';
 import ServiceOverview from '../ServiceOverview/ServiceOverview';
@@ -78,18 +77,19 @@ function App() {
         </main>
 
         <footer className="App-footer py-3">
-          <div className="container">           <div className="row">
-              <div className="col-sm-6">
+          <Container>
+            <Row>
+              <Col sm-6>
               <p>
                 The PID Services Registry is part of the <a href="https://www.project-freya.eu">FREYA project</a> and is maintained by <a href="https://www.datacite.org">DataCite</a>
               </p>
-              </div>
-              <div className="col-sm-6">
+              </Col>
+              <Col sm-6>
                   <p>The FREYA project has received funding from the <a href="https://ec.europa.eu/programmes/horizon2020/en">European Union’s Horizon 2020</a> research and innovation programme under grant agreement No 777523.</p>
-              </div>
-            </div>
+              </Col>
+            </Row>
 
-          </div>
+          </Container>
         </footer>
 
       </div>
@@ -99,7 +99,20 @@ function App() {
 }
 
 function Home() {
-  return <h2>Home</h2>;
+  return (
+    <div>
+      <h2>PID Services Registry</h2>
+      <Container className="content">
+        <Row>
+          <Col>
+          <p>Welcome to the PID Services registry.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur fermentum lacinia ipsum vel varius. In hac habitasse platea dictumst. Maecenas rutrum, ligula vitae commodo egestas, mauris enim commodo purus, vitae ultrices velit risus quis urna. In eu velit ipsum. Pellentesque nec ex eu massa sodales consectetur et ultricies urna. Aliquam finibus, enim sed malesuada rhoncus, mi nisl ullamcorper justo, id interdum dui diam sit amet ipsum. Praesent malesuada quam purus, nec malesuada justo facilisis vitae. Sed vestibulum non est nec facilisis.</p>
+          <p>Phasellus lacinia odio dolor, eu sodales sem blandit vitae. Suspendisse sed lacinia ipsum. Suspendisse interdum urna est, ac scelerisque odio molestie in. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas at nunc lacinia, scelerisque orci non, ornare metus. Morbi sodales turpis a quam vehicula dignissim. Nunc congue cursus est eget convallis. Fusce lobortis lorem augue, sed eleifend velit pretium sit amet. Fusce ut auctor lacus. Duis dictum blandit eros vitae consequat. Aliquam faucibus maximus lacus, ut rhoncus dolor placerat et. Vestibulum ut varius urna. </p>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
 }
 
 function Services() {
