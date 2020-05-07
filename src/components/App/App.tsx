@@ -79,12 +79,12 @@ function App() {
         <footer className="App-footer py-3">
           <Container>
             <Row>
-              <Col sm-6>
+              <Col sm={6}>
               <p>
                 The PID Services Registry is part of the <a href="https://www.project-freya.eu">FREYA project</a> and is maintained by <a href="https://www.datacite.org">DataCite</a>
               </p>
               </Col>
-              <Col sm-6>
+              <Col sm={6}>
                   <p>The FREYA project has received funding from the <a href="https://ec.europa.eu/programmes/horizon2020/en">European Union’s Horizon 2020</a> research and innovation programme under grant agreement No 777523.</p>
               </Col>
             </Row>
