@@ -45,7 +45,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
     <Router>
-      <div className="App">
+      <div className="App d-flex flex-column vh-100">
         <header className="App-header">
           <Navbar>
             <LinkContainer to="/">
@@ -53,16 +53,17 @@ function App() {
             </LinkContainer>
             <Nav className="mr-auto">
               <LinkContainer exact to="/">
-                <Nav.Link>Home</Nav.Link>
+                <Nav.Link>HOME</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/services">
-                <Nav.Link>Services</Nav.Link>
+                <Nav.Link>SERVICES</Nav.Link>
               </LinkContainer>
             </Nav>
           </Navbar>
         </header>
 
-        <main role="main" className="App-main flex-shrink-0">
+        <div className="d-flex flex-column flex-grow-1">
+        <main role="main" className="App-main h-100 flex-grow-1">
           <div className="container">
           <Switch>
               <Route exact path="/services">
@@ -95,8 +96,8 @@ function App() {
             </Row>
 
           </Container>
-        </footer>
-
+          </footer>
+          </div>
       </div>
     </Router>
     </ApolloProvider>
