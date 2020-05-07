@@ -119,7 +119,7 @@ const ServiceOverview: React.FunctionComponent = () => {
 
     return (
         <div className="ServiceOverview">
-            <h1>{service.name}</h1>
+            <h2>{service.name}</h2>
             <Container className="content">
                 <Row>
                     <Col sm={8}>
