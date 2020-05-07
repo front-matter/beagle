@@ -1,11 +1,3 @@
-body {
-  background: #fff;
-  font-family: "Avenir Next", sans-serif;
-}
-
-a {
-  color: #0404B4;
-}
 
 .brand-highlight {
   color: #a6dee3;
@@ -27,6 +19,7 @@ a {
 }
 
 .App-footer {
+  margin-top: 1em;
   font-size: 12px;
   background-color: #d9d9d9;;
 }

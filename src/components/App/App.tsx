@@ -77,9 +77,8 @@ function App() {
           </div>
         </main>
 
-        <footer className="App-footer mt-auto py-3">
-          <div className="container">
-            <div className="row">
+        <footer className="App-footer py-3">
+          <div className="container">           <div className="row">
               <div className="col-sm-6">
               <p>
                 The PID Services Registry is part of the <a href="https://www.project-freya.eu">FREYA project</a> and is maintained by <a href="https://www.datacite.org">DataCite</a>
