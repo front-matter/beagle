@@ -4,7 +4,8 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  useParams
 } from "react-router-dom";
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -70,7 +71,7 @@ function App() {
                 <Services />
               </Route>
               <Route path="/services/:serviceId+">
-                <ServiceOverview />
+                <Service />
               </Route>
               <Route exact path="/">
                 <Home />
@@ -128,6 +129,14 @@ function Services() {
     <Search></Search>
     </div>
   );
+}
+
+function Service() {
+  let { serviceId } = useParams();
+
+  return (
+    <ServiceOverview serviceId={serviceId} />
+  )
 }
 
 export default App;

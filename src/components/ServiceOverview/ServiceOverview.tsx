@@ -1,15 +1,15 @@
 import React, { useRef } from 'react';
-import {
-    useParams
-} from "react-router-dom";
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Container, Row, Col, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { Service } from '../types';
 import Error from '../Error/Error';
 
-
 import './ServiceOverview.css';
+
+type Props = {
+    serviceId?: string;
+};
 
 interface ParamTypes {
     serviceId: string
@@ -18,7 +18,6 @@ interface ParamTypes {
 interface ServiceQueryResult {
     id: string;
     doi: string;
-    totalCount: number;
     titles: [{
         title: string
     }]
@@ -38,7 +37,7 @@ interface ServiceQueryVar {
     id: string;
 }
 
-const SERVICE_GQL = gql`
+export const SERVICE_GQL = gql`
 query getServiceQuery($id: ID!) {
     service(id: $id) {
         id
@@ -57,8 +56,7 @@ query getServiceQuery($id: ID!) {
 }
 `;
 
-const ServiceOverview: React.FunctionComponent = () => {
-    let { serviceId } = useParams<ParamTypes>();
+export const ServiceOverview: React.FunctionComponent<Props> = ({serviceId}) => {
     const inputEl = useRef<HTMLInputElement & FormControl>(null);
 
     const fullId = (process.env.NODE_ENV === "production") ? "https://doi.org/" + serviceId : "https://handle.test.datacite.org/" + serviceId;
