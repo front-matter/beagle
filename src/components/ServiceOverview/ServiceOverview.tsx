@@ -22,7 +22,8 @@ interface ServiceQueryResult {
         title: string
     }]
     descriptions: [{
-        description: string
+        description: string,
+        descriptionType: string
     }]
     creators: [{
         name: string
@@ -62,13 +63,13 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({serviceId}) => 
     const fullId = (process.env.NODE_ENV === "production") ? "https://doi.org/" + serviceId : "https://handle.test.datacite.org/" + serviceId;
 
     const [service, setService] = React.useState<Service>();
-    const { loading, error, data, refetch } = useQuery<ServiceQueryData, ServiceQueryVar>(
+    const { loading, error, data } = useQuery<ServiceQueryData, ServiceQueryVar>(
         SERVICE_GQL,
         {
             errorPolicy: 'all',
-            variables: { id: fullId
+            variables: { id: fullId }
         }
-    })
+    )
 
     const copyToClipboard = (e: React.FormEvent<HTMLButtonElement>): void => {
 
@@ -79,8 +80,6 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({serviceId}) => 
     };
 
     React.useEffect(() => {
-        refetch({ id: fullId})
-
         let result = undefined;
 
         if(data) {
@@ -105,11 +104,10 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({serviceId}) => 
                 description: description,
                 creators: creators
             };
-        } else {
-
         }
+
         setService(result);
-    }, [fullId, data, refetch]);
+    }, [fullId, data]);
 
     if (loading) return <p>Loading...</p>;
 
