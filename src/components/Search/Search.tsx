@@ -82,6 +82,7 @@ query getServicesQuery($query: String!, $cursor: String) {
 `;
 
 export const Search: React.FunctionComponent<Props> = () => {
+    const [typing, setTyping] = React.useState(false);
     const [searchQuery, setSearchQuery] = React.useState("");
     const [searchResults, setSearchResults] = React.useState<Service[]>([]);
     const { loading, error, data, refetch, fetchMore } = useQuery<ServiceQueryData, ServiceQueryVar>(
@@ -118,9 +119,12 @@ export const Search: React.FunctionComponent<Props> = () => {
     }
 
     React.useEffect(() => {
-        if(searchQuery) {
-            refetch({ query: searchQuery, cursor: ""})
-        }
+        const typingDelay = setTimeout(() => {
+            console.log(searchQuery)
+            if(searchQuery) {
+                refetch({ query: searchQuery, cursor: ""})
+            }
+        }, 300)
 
         const results: Service[] = [];
         if(data) {
@@ -153,6 +157,8 @@ export const Search: React.FunctionComponent<Props> = () => {
             )
         }
         setSearchResults(results);
+
+        return () => clearTimeout(typingDelay)
     }, [searchQuery, data, refetch]);
 
     const renderResults = () => {
