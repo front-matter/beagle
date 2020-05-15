@@ -121,9 +121,7 @@ export const Search: React.FunctionComponent<Props> = () => {
     React.useEffect(() => {
         const typingDelay = setTimeout(() => {
             console.log(searchQuery)
-            if(searchQuery) {
                 refetch({ query: searchQuery, cursor: ""})
-            }
         }, 300)
 
         const results: Service[] = [];
