@@ -1,7 +1,7 @@
 body {
   background: #fff;
   margin: 0;
-  font-family: "Avenir Next", sans-serif;
+  font-family: "Calibri", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -23,4 +23,20 @@ h1, h2, h3, h4, h5 {
   background-color: #f2f2f2;
   padding-top: 2em;
   padding-bottom: 1em;
+}
+
+.btn-primary {
+  color: #0404B4;
+  background-color: #B8DEE2;
+  border-color: #0404B4;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+  color: #0404B4;
+  background-color: #3C8C93;
+  border-color: #0404B4;
+}
+
+.form-control {
+  color: #3C8C93;
 }
