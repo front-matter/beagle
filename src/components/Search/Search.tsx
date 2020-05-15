@@ -53,7 +53,7 @@ interface ServiceQueryVar {
     cursor: string;
 }
 
-const SERVICES_GQL = gql`
+export const SERVICES_GQL = gql`
 query getServicesQuery($query: String!, $cursor: String) {
     services(first: 25, query: $query, after: $cursor, repositoryId: "datacite.services") {
         edges {
@@ -81,7 +81,7 @@ query getServicesQuery($query: String!, $cursor: String) {
 }
 `;
 
-const Search: React.FunctionComponent<Props> = () => {
+export const Search: React.FunctionComponent<Props> = () => {
     const [searchQuery, setSearchQuery] = React.useState("");
     const [searchResults, setSearchResults] = React.useState<Service[]>([]);
     const { loading, error, data, refetch, fetchMore } = useQuery<ServiceQueryData, ServiceQueryVar>(
@@ -118,7 +118,9 @@ const Search: React.FunctionComponent<Props> = () => {
     }
 
     React.useEffect(() => {
-        refetch({ query: searchQuery, cursor: ""})
+        if(searchQuery) {
+            refetch({ query: searchQuery, cursor: ""})
+        }
 
         const results: Service[] = [];
         if(data) {
