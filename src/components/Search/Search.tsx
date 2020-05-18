@@ -82,7 +82,6 @@ query getServicesQuery($query: String!, $cursor: String) {
 `;
 
 export const Search: React.FunctionComponent<Props> = () => {
-    const [typing, setTyping] = React.useState(false);
     const [searchQuery, setSearchQuery] = React.useState("");
     const [searchResults, setSearchResults] = React.useState<Service[]>([]);
     const { loading, error, data, refetch, fetchMore } = useQuery<ServiceQueryData, ServiceQueryVar>(
