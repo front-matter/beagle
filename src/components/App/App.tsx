@@ -114,7 +114,10 @@ function Home() {
         <Row>
           <Col>
           <p>Welcome to the PID Services registry.</p>
-          <p>This registry provides an overview of services related to Persistent Identifiers (PIDs). The PID Services Registry is maintained by DataCite and was developed within the FREYA project.</p>
+          <p>
+            This registry provides an overview of services related to Persistent Identifiers (PIDs). The PID Services Registry is maintained by DataCite and was developed within the FREYA project.
+            For more information about the registry contact <a href="mailto:support@datacite.org">support@datacite.org</a>
+          </p>
           </Col>
         </Row>
       </Container>
