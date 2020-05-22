@@ -12,6 +12,11 @@
   margin-bottom: 1em;
   background-color: #fff;
   box-shadow: 0 2px 4px -1px rgba(0,0,0,0.25);
+  height: 189px;
+}
+
+.App-header-content {
+  text-align: center;
 }
 
 .App-main {
@@ -22,4 +27,8 @@
   margin-top: 1em;
   font-size: 12px;
   background-color: #d9d9d9;;
+}
+
+.navbar-inner {
+  min-height: 0px;
 }

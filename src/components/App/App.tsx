@@ -53,28 +53,35 @@ function App() {
               <Navbar.Brand data-testid="navbar-brand"><span className="brand-highlight">PID</span> Services Registry</Navbar.Brand>
             </LinkContainer>
             <Nav className="mr-auto">
-              <LinkContainer exact to="/">
-                <Nav.Link>HOME</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/services">
+              <LinkContainer to="/">
                 <Nav.Link>SERVICES</Nav.Link>
               </LinkContainer>
             </Nav>
           </Navbar>
+          <div className="App-header-content">
+            <Container>
+              <Row>
+                <Col>
+                <h1>Welcome to the PID Services registry.</h1>
+                <p>
+                  This registry provides an overview of services related to Persistent Identifiers (PIDs). The PID Services Registry is maintained by DataCite and was developed within the FREYA project.
+                  For more information about the registry contact <a href="mailto:support@datacite.org">support@datacite.org</a>
+                </p>
+                </Col>
+              </Row>
+            </Container>
+          </div>
         </header>
 
         <div className="d-flex flex-column flex-grow-1">
         <main role="main" className="App-main h-100 flex-grow-1">
           <div className="container">
           <Switch>
-              <Route exact path="/services">
+              <Route exact path="/">
                 <Services />
               </Route>
               <Route path="/services/:serviceId+">
                 <Service />
-              </Route>
-              <Route exact path="/">
-                <Home />
               </Route>
               <Route path="*">
                 <Error title="Not found" message="The page you are looking for can not be found." />
@@ -103,25 +110,6 @@ function App() {
       </div>
     </Router>
     </ApolloProvider>
-  );
-}
-
-function Home() {
-  return (
-    <div>
-      <h2>PID Services Registry</h2>
-      <Container className="content">
-        <Row>
-          <Col>
-          <p>Welcome to the PID Services registry.</p>
-          <p>
-            This registry provides an overview of services related to Persistent Identifiers (PIDs). The PID Services Registry is maintained by DataCite and was developed within the FREYA project.
-            For more information about the registry contact <a href="mailto:support@datacite.org">support@datacite.org</a>
-          </p>
-          </Col>
-        </Row>
-      </Container>
-    </div>
   );
 }
 

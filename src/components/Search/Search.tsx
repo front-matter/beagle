@@ -86,7 +86,10 @@ export const Search: React.FunctionComponent<Props> = () => {
     const [searchResults, setSearchResults] = React.useState<Service[]>([]);
     const { loading, error, data, refetch, fetchMore } = useQuery<ServiceQueryData, ServiceQueryVar>(
         SERVICES_GQL,
-        { variables: { query: "", cursor: "" }
+        {
+            errorPolicy: 'all',
+            variables: { query: "", cursor: ""
+        }
     })
 
     const onSearchChange = (e: React.FormEvent<HTMLInputElement>): void => {
