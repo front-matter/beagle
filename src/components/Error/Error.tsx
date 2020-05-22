@@ -11,7 +11,7 @@ type Props = {
 
 const Error: React.FunctionComponent<Props> = ({title, message}) => {
     return (
-        <div>
+        <div className="Error">
         <h2>{title}</h2>
         <Container className="content">
           <Row>
