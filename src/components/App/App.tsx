@@ -35,7 +35,7 @@ const client = new ApolloClient({
       if (networkError) console.log(`[Network error]: ${networkError}`);
     }),
     new HttpLink({
-      uri: 'https://api.test.datacite.org/graphql',
+      uri: process.env.REACT_APP_GRAPHQL_API_URL,
       credentials: 'same-origin'
     })
   ]),
