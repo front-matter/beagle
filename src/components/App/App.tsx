@@ -116,7 +116,6 @@ function App() {
 function Services() {
   return (
     <div>
-    <h2>Services</h2>
     <Search></Search>
     </div>
   );
