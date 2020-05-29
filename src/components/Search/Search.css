@@ -3,8 +3,8 @@
     width: 100%;
 }
 
-.Search-results {
-    margin-top: 2em;
+.Search-input {
+    margin-bottom: 2em;
 }
 
 .Search-results ul {
@@ -12,3 +12,10 @@
     padding: 0;
 }
 
+.Search-filters .badge {
+    float: right;
+}
+
+.Search-filters .list-group {
+    margin-bottom: 2em;
+}

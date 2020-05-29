@@ -10,6 +10,7 @@ import { gql } from 'apollo-boost';
 import { Service } from '../types';
 
 import './Search.css';
+import { Container, Row, Col, Badge, ListGroup} from 'react-bootstrap';
 
 type Props = {
 
@@ -189,13 +190,47 @@ export const Search: React.FunctionComponent<Props> = () => {
         )
     }
 
+    const renderFilters = () => {
+
+        return (
+            <div className="Search-filters">
+                <ListGroup>
+                    <h5>PID Types</h5>
+                    <ListGroup.Item>Cras justo odio <Badge pill variant="secondary">9</Badge></ListGroup.Item>
+                    <ListGroup.Item>Dapibus ac facilisis in  <Badge pill variant="secondary">2</Badge></ListGroup.Item>
+                    <ListGroup.Item>Morbi leo risus <Badge pill variant="secondary">1</Badge></ListGroup.Item>
+                    <ListGroup.Item>Porta ac consectetur ac  <Badge pill variant="secondary">5</Badge></ListGroup.Item>
+                    <ListGroup.Item>Vestibulum at eros <Badge pill variant="secondary">1</Badge></ListGroup.Item>
+                </ListGroup>
+
+                <ListGroup>
+                    <h5>Disciplines</h5>
+                    <ListGroup.Item>Cras justo odio <Badge pill variant="secondary">9</Badge></ListGroup.Item>
+                    <ListGroup.Item>Dapibus ac facilisis in  <Badge pill variant="secondary">2</Badge></ListGroup.Item>
+                    <ListGroup.Item>Morbi leo risus <Badge pill variant="secondary">1</Badge></ListGroup.Item>
+                    <ListGroup.Item>Porta ac consectetur ac  <Badge pill variant="secondary">5</Badge></ListGroup.Item>
+                    <ListGroup.Item>Vestibulum at eros <Badge pill variant="secondary">1</Badge></ListGroup.Item>
+                </ListGroup>
+            </div>
+        )
+    }
+
     return (
         <div className="Search">
-            <Form key="search">
+            <Form key="search" className="Search-input">
                 <FormControl onChange={onSearchChange} size="lg" type="text" placeholder="Search" value={searchQuery} />
             </Form>
 
-            {renderResults()}
+            <Container>
+                <Row>
+                    <Col xs={4}>
+                    {renderFilters()}
+                    </Col>
+                    <Col xs={8}>
+                    {renderResults()}
+                    </Col>
+                </Row>
+            </Container>
         </div>
     );
 }
