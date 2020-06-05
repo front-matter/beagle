@@ -113,9 +113,7 @@ export const Search: React.FunctionComponent<Props> = () => {
         })
 
     const onSearchChange = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        if (e.currentTarget.value && typeof e.currentTarget.value === 'string') {
-            setSearchQuery(e.currentTarget.value);
-        }
+        setSearchQuery(e.currentTarget.value);
     };
 
     const loadMore = (cursor: String) => {
@@ -149,7 +147,6 @@ export const Search: React.FunctionComponent<Props> = () => {
 
     React.useEffect(() => {
         const typingDelay = setTimeout(() => {
-            console.log(searchQuery)
             refetch({ query: searchQuery, cursor: "" })
         }, 300)
 
