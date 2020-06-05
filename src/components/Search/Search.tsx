@@ -223,23 +223,16 @@ export const Search: React.FunctionComponent<Props> = () => {
             <div className="Search-filters">
                 <ListGroup>
                     <h5>PID Types</h5>
-                    {/* {data.pidEntities.map(item => (
-                        <ListGroup.Item key={item.id}>Cras justo odio <Badge pill variant="secondary">9</Badge></ListGroup.Item>
-                    ))} */}
-
-                    <ListGroup.Item>Dapibus ac facilisis in  <Badge pill variant="secondary">2</Badge></ListGroup.Item>
-                    <ListGroup.Item>Morbi leo risus <Badge pill variant="secondary">1</Badge></ListGroup.Item>
-                    <ListGroup.Item>Porta ac consectetur ac  <Badge pill variant="secondary">5</Badge></ListGroup.Item>
-                    <ListGroup.Item>Vestibulum at eros <Badge pill variant="secondary">1</Badge></ListGroup.Item>
+                    {data.services.pidEntities.map(item => (
+                        <ListGroup.Item key={item.id}>{item.id}<Badge pill variant="secondary">{item.count}</Badge></ListGroup.Item>
+                    ))}
                 </ListGroup>
 
                 <ListGroup>
                     <h5>Disciplines</h5>
-                    <ListGroup.Item>Cras justo odio <Badge pill variant="secondary">9</Badge></ListGroup.Item>
-                    <ListGroup.Item>Dapibus ac facilisis in  <Badge pill variant="secondary">2</Badge></ListGroup.Item>
-                    <ListGroup.Item>Morbi leo risus <Badge pill variant="secondary">1</Badge></ListGroup.Item>
-                    <ListGroup.Item>Porta ac consectetur ac  <Badge pill variant="secondary">5</Badge></ListGroup.Item>
-                    <ListGroup.Item>Vestibulum at eros <Badge pill variant="secondary">1</Badge></ListGroup.Item>
+                    {data.services.fieldsOfScience.map(item => (
+                        <ListGroup.Item key={item.id}>{item.title}<Badge pill variant="secondary">{item.count}</Badge></ListGroup.Item>
+                    ))}
                 </ListGroup>
             </div>
         )
