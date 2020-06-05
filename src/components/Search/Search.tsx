@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormControlProps } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
@@ -10,7 +11,7 @@ import { gql } from 'apollo-boost';
 import { Service } from '../types';
 
 import './Search.css';
-import { Container, Row, Col, Badge, ListGroup} from 'react-bootstrap';
+import { Container, Row, Col, Badge, ListGroup } from 'react-bootstrap';
 
 type Props = {
 
@@ -40,11 +41,19 @@ interface ServiceEdge {
     node: ServiceQueryResult
 }
 
+interface Facet {
+    count: number;
+    id: string;
+    title: string;
+}
+
 interface ServiceQueryData {
     services: {
         __typename: String;
         edges: ServiceEdge[];
         pageInfo: PageInfo;
+        pidEntities: Facet[];
+        fieldsOfScience: Facet[];
         totalCount: Number;
     },
 }
@@ -77,6 +86,15 @@ query getServicesQuery($query: String!, $cursor: String) {
             endCursor,
             hasNextPage
         },
+        pidEntities {
+            id
+            count
+        },
+        fieldsOfScience {
+            id
+            title
+            count
+        },
         totalCount
     }
 }
@@ -89,47 +107,55 @@ export const Search: React.FunctionComponent<Props> = () => {
         SERVICES_GQL,
         {
             errorPolicy: 'all',
-            variables: { query: "", cursor: ""
-        }
-    })
+            variables: {
+                query: "", cursor: ""
+            }
+        })
 
-    const onSearchChange = (e: React.FormEvent<HTMLInputElement>): void => {
-        setSearchQuery(e.currentTarget.value);
+    const onSearchChange = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        if (e.currentTarget.value && typeof e.currentTarget.value === 'string') {
+            setSearchQuery(e.currentTarget.value);
+        }
     };
 
     const loadMore = (cursor: String) => {
         fetchMore(
-            { variables: { cursor: cursor },
-            updateQuery: (previousResult: ServiceQueryData, { fetchMoreResult }) => {
-                if (!fetchMoreResult) { return previousResult; }
+            {
+                variables: { cursor: cursor },
+                updateQuery: (previousResult: ServiceQueryData, { fetchMoreResult }) => {
+                    if (!fetchMoreResult) { return previousResult; }
 
-                const newEdges = fetchMoreResult.services.edges;
-                const pageInfo = fetchMoreResult.services.pageInfo;
-                const totalCount = fetchMoreResult.services.totalCount;
+                    const newEdges = fetchMoreResult.services.edges;
+                    const pageInfo = fetchMoreResult.services.pageInfo;
+                    const pidEntities = fetchMoreResult.services.pidEntities;
+                    const fieldsOfScience = fetchMoreResult.services.fieldsOfScience;
+                    const totalCount = fetchMoreResult.services.totalCount;
 
-                return newEdges.length
-                    ? {
-                        services: {
-                            __typename: previousResult.services.__typename,
-                            edges: [...previousResult.services.edges, ...newEdges],
-                            pageInfo,
-                            totalCount,
+                    return newEdges.length
+                        ? {
+                            services: {
+                                __typename: previousResult.services.__typename,
+                                edges: [...previousResult.services.edges, ...newEdges],
+                                pageInfo,
+                                pidEntities,
+                                fieldsOfScience,
+                                totalCount,
+                            }
                         }
-                    }
-                    : previousResult;
-            }
-        })
+                        : previousResult;
+                }
+            })
     }
 
     React.useEffect(() => {
         const typingDelay = setTimeout(() => {
             console.log(searchQuery)
-                refetch({ query: searchQuery, cursor: ""})
+            refetch({ query: searchQuery, cursor: "" })
         }, 300)
 
         const results: Service[] = [];
-        if(data) {
-            data.services.edges.map(edge =>  {
+        if (data) {
+            data.services.edges.map(edge => {
                 let dataset = edge.node;
                 let name = "No Title";
                 if (dataset.titles.length > 0) {
@@ -138,7 +164,7 @@ export const Search: React.FunctionComponent<Props> = () => {
 
                 let description = "";
                 if (dataset.descriptions.length > 0) {
-                    description =  dataset.descriptions[0].description;
+                    description = dataset.descriptions[0].description;
                 }
                 let creators = [""];
                 creators = dataset.creators.map(c => c.name);
@@ -154,7 +180,7 @@ export const Search: React.FunctionComponent<Props> = () => {
                 );
 
                 return results;
-                }
+            }
             )
         }
         setSearchResults(results);
@@ -167,36 +193,40 @@ export const Search: React.FunctionComponent<Props> = () => {
 
         if (error) return <Error title="Something went wrong." message="Unable to load services." />;
 
-        if (!data ) return '';
+        if (!data) return '';
 
         return (
-        <div className="Search-results">
-            <p>Num services: {data.services.totalCount}</p>
-            {/* <ul onScroll={onScroll}> */}
-            <ul>
-            {searchResults.map(item => (
-                <li key={item.id}>
-                    <ServiceListingItem service={item}></ServiceListingItem>
-                </li>
-            ))}
-            </ul>
+            <div className="Search-results">
+                <p>Num services: {data.services.totalCount}</p>
+                {/* <ul onScroll={onScroll}> */}
+                <ul>
+                    {searchResults.map(item => (
+                        <li key={item.id}>
+                            <ServiceListingItem service={item}></ServiceListingItem>
+                        </li>
+                    ))}
+                </ul>
 
-            {data.services.pageInfo.hasNextPage &&
-            <div>
-                <Button variant="secondary" onClick={() => loadMore(data.services.pageInfo.endCursor)} block>Show more</Button>
+                {data.services.pageInfo.hasNextPage &&
+                    <div>
+                        <Button variant="secondary" onClick={() => loadMore(data.services.pageInfo.endCursor)} block>Show more</Button>
+                    </div>
+                }
             </div>
-            }
-        </div>
         )
     }
 
     const renderFilters = () => {
+        if (!data) return '';
 
         return (
             <div className="Search-filters">
                 <ListGroup>
                     <h5>PID Types</h5>
-                    <ListGroup.Item>Cras justo odio <Badge pill variant="secondary">9</Badge></ListGroup.Item>
+                    {/* {data.pidEntities.map(item => (
+                        <ListGroup.Item key={item.id}>Cras justo odio <Badge pill variant="secondary">9</Badge></ListGroup.Item>
+                    ))} */}
+
                     <ListGroup.Item>Dapibus ac facilisis in  <Badge pill variant="secondary">2</Badge></ListGroup.Item>
                     <ListGroup.Item>Morbi leo risus <Badge pill variant="secondary">1</Badge></ListGroup.Item>
                     <ListGroup.Item>Porta ac consectetur ac  <Badge pill variant="secondary">5</Badge></ListGroup.Item>
@@ -224,10 +254,10 @@ export const Search: React.FunctionComponent<Props> = () => {
             <Container>
                 <Row>
                     <Col xs={4}>
-                    {renderFilters()}
+                        {renderFilters()}
                     </Col>
                     <Col xs={8}>
-                    {renderResults()}
+                        {renderResults()}
                     </Col>
                 </Row>
             </Container>
