@@ -5,7 +5,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import ServiceListingItem from '../ServiceListingItem/ServiceListingItem';
 import Error from '../Error/Error';
-
+import { useQueryState } from "use-location-state";
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Service } from '../types';
@@ -61,11 +61,13 @@ interface ServiceQueryData {
 interface ServiceQueryVar {
     query: string;
     cursor: string;
+    pidEntity: string;
+    fieldOfScience: string;
 }
 
 export const SERVICES_GQL = gql`
-query getServicesQuery($query: String!, $cursor: String) {
-    services(first: 25, query: $query, after: $cursor, repositoryId: "datacite.services") {
+query getServicesQuery($query: String!, $cursor: String, $pidEntity: String, $fieldOfScience: String) {
+    services(first: 25, query: $query, after: $cursor, repositoryId: "datacite.services", pidEntity: $pidEntity, fieldOfScience: $fieldOfScience) {
         edges {
             node {
                 id
@@ -101,20 +103,31 @@ query getServicesQuery($query: String!, $cursor: String) {
 `;
 
 export const Search: React.FunctionComponent<Props> = () => {
-    const [searchQuery, setSearchQuery] = React.useState("");
+    // const [searchQuery, setSearchQuery] = React.useState("");
+    const [searchQuery, setSearchQuery] = useQueryState("search", "");
+    const [pidTypes, setPidTypes] = useQueryState<string[]>("pidtypes", []);
+    const [disciplines, setDisciplines] = useQueryState<string[]>("disciplines", []);
     const [searchResults, setSearchResults] = React.useState<Service[]>([]);
     const { loading, error, data, refetch, fetchMore } = useQuery<ServiceQueryData, ServiceQueryVar>(
         SERVICES_GQL,
         {
             errorPolicy: 'all',
             variables: {
-                query: "", cursor: ""
+                query: "", cursor: "", pidEntity: pidTypes.toString(), fieldOfScience: disciplines.toString()
             }
         })
 
     const onSearchChange = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
         setSearchQuery(e.currentTarget.value);
     };
+
+    const toggleFilters = (filters: string[], setFunc: Function, id: string) => {
+        const activeFilters = filters.filter(t => t !== id);
+        setFunc(
+            filters.includes(id) ? activeFilters : [...filters, id]
+        );
+    };
+
 
     const loadMore = (cursor: String) => {
         fetchMore(
@@ -147,7 +160,7 @@ export const Search: React.FunctionComponent<Props> = () => {
 
     React.useEffect(() => {
         const typingDelay = setTimeout(() => {
-            refetch({ query: searchQuery, cursor: "" })
+            refetch({ query: searchQuery, cursor: "", pidEntity: pidTypes.toString(), fieldOfScience: disciplines.toString() })
         }, 300)
 
         const results: Service[] = [];
@@ -177,10 +190,10 @@ export const Search: React.FunctionComponent<Props> = () => {
                 );
 
                 return results;
-            }
-            )
+            })
+
+            setSearchResults(results);
         }
-        setSearchResults(results);
 
         return () => clearTimeout(typingDelay)
     }, [searchQuery, data, refetch]);
@@ -195,7 +208,6 @@ export const Search: React.FunctionComponent<Props> = () => {
         return (
             <div className="Search-results">
                 <p>Num services: {data.services.totalCount}</p>
-                {/* <ul onScroll={onScroll}> */}
                 <ul>
                     {searchResults.map(item => (
                         <li key={item.id}>
@@ -221,14 +233,14 @@ export const Search: React.FunctionComponent<Props> = () => {
                 <ListGroup>
                     <h5>PID Types</h5>
                     {data.services.pidEntities.map(item => (
-                        <ListGroup.Item key={item.id}>{item.id}<Badge pill variant="secondary">{item.count}</Badge></ListGroup.Item>
+                        <ListGroup.Item action key={item.id} active={pidTypes.includes(item.id)} onClick={() => toggleFilters(pidTypes, setPidTypes, item.id)}>{item.id}<Badge pill variant="secondary">{item.count}</Badge></ListGroup.Item>
                     ))}
                 </ListGroup>
 
                 <ListGroup>
                     <h5>Disciplines</h5>
                     {data.services.fieldsOfScience.map(item => (
-                        <ListGroup.Item key={item.id}>{item.title}<Badge pill variant="secondary">{item.count}</Badge></ListGroup.Item>
+                        <ListGroup.Item action key={item.id} active={disciplines.includes(item.id)} onClick={() => toggleFilters(disciplines, setDisciplines, item.id)}>{item.title}<Badge pill variant="secondary">{item.count}</Badge></ListGroup.Item>
                     ))}
                 </ListGroup>
             </div>

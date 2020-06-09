@@ -45,38 +45,31 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-    <Router>
-      <div className="App d-flex flex-column vh-100">
+      <Router>
         <header className="App-header">
           <Navbar>
             <LinkContainer to="/">
               <Navbar.Brand data-testid="navbar-brand"><span className="brand-highlight">PID</span> Services Registry</Navbar.Brand>
             </LinkContainer>
-            <Nav className="mr-auto">
-              <LinkContainer to="/">
-                <Nav.Link>SERVICES</Nav.Link>
-              </LinkContainer>
-            </Nav>
           </Navbar>
           <div className="App-header-content">
             <Container>
               <Row>
                 <Col>
-                <h1>Welcome to the PID Services registry.</h1>
-                <p>
-                  This registry provides an overview of services related to Persistent Identifiers (PIDs). The PID Services Registry is maintained by DataCite and was developed within the FREYA project.
+                  <h1>Welcome to the PID Services registry.</h1>
+                  <p>
+                    This registry provides an overview of services related to Persistent Identifiers (PIDs). The PID Services Registry is maintained by DataCite and was developed within the FREYA project.
                   For more information about the registry contact <a href="mailto:support@datacite.org">support@datacite.org</a>
-                </p>
+                  </p>
                 </Col>
               </Row>
             </Container>
           </div>
         </header>
 
-        <div className="d-flex flex-column flex-grow-1">
-        <main role="main" className="App-main h-100 flex-grow-1">
-          <div className="container">
-          <Switch>
+        <main role="main">
+          <Container>
+            <Switch>
               <Route exact path="/">
                 <Services />
               </Route>
@@ -86,41 +79,36 @@ function App() {
               <Route path="*">
                 <Error title="Not found" message="The page you are looking for can not be found." />
               </Route>
-          </Switch>
-          </div>
-        </main>
+            </Switch>
+          </Container>>
+          </main>
 
         <footer className="App-footer py-3">
           <Container>
             <Row>
               <Col sm={6}>
-              <p>
-                The PID Services Registry is maintained by <a href="https://www.datacite.org">DataCite</a> and was developed within the <a href="https://www.project-freya.eu">FREYA project</a> .
-              </p>
-              <p>
-                <img src="freya_logo.png" width="100" alt="FREYA" />
-                <img src="eosc_logo-trs.png" width="200" alt="FREYA" />
-              </p>
+                <p>
+                  The PID Services Registry is maintained by <a href="https://www.datacite.org">DataCite</a> and was developed within the <a href="https://www.project-freya.eu">FREYA project</a> .
+                </p>
+                <p>
+                  <img src="freya_logo.png" width="100" alt="FREYA" />
+                  <img src="eosc_logo-trs.png" width="200" alt="FREYA" />
+                </p>
               </Col>
               <Col sm={6}>
-                  <p>The FREYA project has received funding from the <a href="https://ec.europa.eu/programmes/horizon2020/en">European Union’s Horizon 2020</a> research and innovation programme under grant agreement No 777523.</p>
+                <p>The FREYA project has received funding from the <a href="https://ec.europa.eu/programmes/horizon2020/en">European Union’s Horizon 2020</a> research and innovation programme under grant agreement No 777523.</p>
               </Col>
             </Row>
-
           </Container>
-          </footer>
-          </div>
-      </div>
-    </Router>
+        </footer>
+      </Router>
     </ApolloProvider>
   );
 }
 
 function Services() {
   return (
-    <div>
     <Search></Search>
-    </div>
   );
 }
 
