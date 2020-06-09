@@ -16,7 +16,7 @@ import { HttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 
-import { Container, Row, Col, Navbar, Nav } from 'react-bootstrap';
+import { Container, Row, Col, Navbar } from 'react-bootstrap';
 
 import Search from '../Search/Search';
 import ServiceOverview from '../ServiceOverview/ServiceOverview';

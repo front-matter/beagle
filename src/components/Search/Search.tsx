@@ -1,5 +1,4 @@
 import React from 'react';
-import { FormControlProps } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
@@ -196,6 +195,7 @@ export const Search: React.FunctionComponent<Props> = () => {
         }
 
         return () => clearTimeout(typingDelay)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchQuery, data, refetch]);
 
     const renderResults = () => {
