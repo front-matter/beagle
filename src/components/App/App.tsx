@@ -16,12 +16,11 @@ import { HttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 
-import { Container, Row, Col, Navbar } from 'react-bootstrap';
-
+import { Container, Row, Col, Navbar, Nav } from 'react-bootstrap';
 import Search from '../Search/Search';
 import ServiceOverview from '../ServiceOverview/ServiceOverview';
 import Error from '../Error/Error';
-
+import About from '../About/About';
 
 const client = new ApolloClient({
   link: ApolloLink.from([
@@ -51,6 +50,12 @@ function App() {
             <LinkContainer to="/">
               <Navbar.Brand data-testid="navbar-brand"><span className="brand-highlight">PID</span> Services Registry</Navbar.Brand>
             </LinkContainer>
+            <LinkContainer to="/">
+              <Nav.Link>Services</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/about">
+              <Nav.Link>About</Nav.Link>
+            </LinkContainer>
           </Navbar>
           <div className="App-header-content">
             <Container>
@@ -76,12 +81,15 @@ function App() {
               <Route path="/services/:serviceId+">
                 <Service />
               </Route>
+              <Route exact path="/about">
+                <About />
+              </Route>
               <Route path="*">
                 <Error title="Not found" message="The page you are looking for can not be found." />
               </Route>
             </Switch>
-          </Container>>
-          </main>
+          </Container>
+        </main>
 
         <footer className="App-footer py-3">
           <Container>
