@@ -28,7 +28,7 @@ const About: React.FunctionComponent = () => {
                     <h3>Metadata</h3>
                     <p>
                         All services are registered as a <a href="https://doi.org">DOI</a> provided by <a href="https://www.datacite.org">DataCite</a> and uses the associated DataCite metadata schema to describe the services.
-                        More information can be found via the <a href="https://schema.datacite.org/">DataCite Metadata Schema</a> site.
+                        More information can be found from the <a href="https://schema.datacite.org/">DataCite Metadata Schema</a> site.
                     </p>
                     <h3>API</h3>
                     <p>
@@ -43,7 +43,7 @@ const About: React.FunctionComponent = () => {
                     <p>An important thing to realise here is that all services are registered under the repository <strong>"datacite.services"</strong>, without this it will return all services registered regardless if they are related to PID Services.</p>
 
                     <h4>More</h4>
-                    In addition to the graphql API, because these are registered as DataCite DOIs you may additionally query them using any other existing interface offered, other APIs are documented on the <a href="https://support.datacite.org/docs/api">DataCite support site.</a>
+                    <p>In addition to the GraphQL API, because these are registered as DataCite DOIs you may additionally query them using any other existing interface offered, other APIs are documented on the <a href="https://support.datacite.org/docs/api">DataCite support site.</a></p>
 
                     <h3>Contact</h3>
                     <p>

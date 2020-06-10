@@ -12,10 +12,6 @@ import { Service } from '../types';
 import './Search.css';
 import { Container, Row, Col, Badge, ListGroup } from 'react-bootstrap';
 
-type Props = {
-
-};
-
 interface ServiceQueryResult {
     id: string;
     doi: string;
@@ -101,8 +97,7 @@ query getServicesQuery($query: String!, $cursor: String, $pidEntity: String, $fi
 }
 `;
 
-export const Search: React.FunctionComponent<Props> = () => {
-    // const [searchQuery, setSearchQuery] = React.useState("");
+export const Search: React.FunctionComponent = () => {
     const [searchQuery, setSearchQuery] = useQueryState("search", "");
     const [pidTypes, setPidTypes] = useQueryState<string[]>("pidtypes", []);
     const [disciplines, setDisciplines] = useQueryState<string[]>("disciplines", []);

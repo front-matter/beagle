@@ -3,7 +3,7 @@ Beagle
 
 This is the code repository behind the PID Services Registry [https://pidservices.org](https://pidservices.org)
 
-Developed under the project goals of the Freya Project: [https://www.project-freya.eu/](https://www.project-freya.eu/)
+Developed under the project goals of the FREYA Project: [https://www.project-freya.eu/](https://www.project-freya.eu/)
 
 ## Available Scripts
 
