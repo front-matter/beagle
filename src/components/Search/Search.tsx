@@ -230,19 +230,24 @@ export const Search: React.FunctionComponent<Props> = () => {
 
         return (
             <div className="Search-filters">
-                <ListGroup>
-                    <h5>PID Types</h5>
-                    {data.services.pidEntities.map(item => (
-                        <ListGroup.Item action key={item.id} active={pidTypes.includes(item.id)} onClick={() => toggleFilters(pidTypes, setPidTypes, item.id)}>{item.id}<Badge pill variant="secondary">{item.count}</Badge></ListGroup.Item>
-                    ))}
-                </ListGroup>
+                <h4>Filters</h4>
+                {data.services.pidEntities.length > 0 &&
+                    <ListGroup>
+                        <h5>PID Types</h5>
+                        {data.services.pidEntities.map(item => (
+                            <ListGroup.Item action key={item.id} active={pidTypes.includes(item.id)} onClick={() => toggleFilters(pidTypes, setPidTypes, item.id)}>{item.id}<Badge pill variant="secondary">{item.count}</Badge></ListGroup.Item>
+                        ))}
+                    </ListGroup>
+                }
 
-                <ListGroup>
-                    <h5>Disciplines</h5>
-                    {data.services.fieldsOfScience.map(item => (
-                        <ListGroup.Item action key={item.id} active={disciplines.includes(item.id)} onClick={() => toggleFilters(disciplines, setDisciplines, item.id)}>{item.title}<Badge pill variant="secondary">{item.count}</Badge></ListGroup.Item>
-                    ))}
-                </ListGroup>
+                {data.services.fieldsOfScience.length > 0 &&
+                    <ListGroup>
+                        <h5>Disciplines</h5>
+                        {data.services.fieldsOfScience.map(item => (
+                            <ListGroup.Item action key={item.id} active={disciplines.includes(item.id)} onClick={() => toggleFilters(disciplines, setDisciplines, item.id)}>{item.title}<Badge pill variant="secondary">{item.count}</Badge></ListGroup.Item>
+                        ))}
+                    </ListGroup>
+                }
             </div>
         )
     }
