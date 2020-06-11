@@ -107,7 +107,7 @@ export const Search: React.FunctionComponent = () => {
         {
             errorPolicy: 'all',
             variables: {
-                query: "", cursor: "", pidEntity: pidTypes.toString(), fieldOfScience: disciplines.toString()
+                query: searchQuery, cursor: "", pidEntity: pidTypes.toString(), fieldOfScience: disciplines.toString()
             }
         })
 
