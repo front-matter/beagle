@@ -2,12 +2,11 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
-import ServiceListingItem from '../ServiceListingItem/ServiceListingItem';
+import { ServiceListingData, ServiceListingItem } from '../ServiceListingItem/ServiceListingItem';
 import Error from '../Error/Error';
 import { useQueryState } from "use-location-state";
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { Service } from '../types';
 
 import './Search.css';
 import { Container, Row, Col, Badge, ListGroup } from 'react-bootstrap';
@@ -101,7 +100,7 @@ export const Search: React.FunctionComponent = () => {
     const [searchQuery, setSearchQuery] = useQueryState("search", "");
     const [pidTypes, setPidTypes] = useQueryState<string[]>("pidtypes", []);
     const [disciplines, setDisciplines] = useQueryState<string[]>("disciplines", []);
-    const [searchResults, setSearchResults] = React.useState<Service[]>([]);
+    const [searchResults, setSearchResults] = React.useState<ServiceListingData[]>([]);
     const { loading, error, data, refetch, fetchMore } = useQuery<ServiceQueryData, ServiceQueryVar>(
         SERVICES_GQL,
         {
@@ -157,7 +156,7 @@ export const Search: React.FunctionComponent = () => {
             refetch({ query: searchQuery, cursor: "", pidEntity: pidTypes.toString(), fieldOfScience: disciplines.toString() })
         }, 300)
 
-        const results: Service[] = [];
+        const results: ServiceListingData[] = [];
         if (data) {
             data.services.edges.map(edge => {
                 let dataset = edge.node;

@@ -1,26 +1,33 @@
 import React from 'react';
-import { Service } from '../types';
 import { Card } from 'react-bootstrap';
 import './ServiceListingItem.css';
 
+export interface ServiceListingData {
+    id: string;
+    doi: string;
+    name: string;
+    description: string;
+    creators: string[];
+}
+
 type Props = {
-    service: Service;
+    service: ServiceListingData;
 };
 
 type State = {
 
 };
 
-const ServiceListingItem: React.FunctionComponent<Props> = ({service}) => {
+export const ServiceListingItem: React.FunctionComponent<Props> = ({ service }) => {
     return (
         <Card>
             <Card.Body>
-            <Card.Title><a href={"/services/" + service.doi}>{service.name}</a></Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">{service.creators.join(", ")}</Card.Subtitle>
-            <Card.Text>
-                {service.description}
-            </Card.Text>
-            <Card.Link href={service.id}>Access Service</Card.Link>
+                <Card.Title><a href={"/services/" + service.doi}>{service.name}</a></Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{service.creators.join(", ")}</Card.Subtitle>
+                <Card.Text>
+                    {service.description}
+                </Card.Text>
+                <Card.Link href={service.id}>Access Service</Card.Link>
             </Card.Body>
         </Card>
     )
