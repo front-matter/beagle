@@ -135,7 +135,6 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
             creators = dataset.creators.map(c => c.name);
 
             const groupedSubjects = groupby(dataset.subjects, subject => subject.subjectScheme);
-            console.log(groupedSubjects);
 
             let fieldsOfScience: string[] = [];
             if ("Fields of Science and Technology (FOS)" in groupedSubjects) {
