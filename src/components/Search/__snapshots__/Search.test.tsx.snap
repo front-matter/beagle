@@ -8,12 +8,29 @@ exports[`renders 1`] = `
     <form
       class="Search-input"
     >
-      <input
-        class="form-control form-control-lg"
-        placeholder="Search"
-        type="text"
-        value=""
-      />
+      <div
+        class="input-group"
+      >
+        <input
+          class="form-control form-control-lg"
+          placeholder="Search"
+          type="text"
+          value=""
+        />
+        <button
+          class="btn btn-secondary"
+          type="submit"
+        >
+          Search
+        </button>
+        <button
+          class="btn bg-transparent reset"
+        >
+          <i
+            class="fa fa-times"
+          />
+        </button>
+      </div>
     </form>
     <div
       class="container"
@@ -45,12 +62,29 @@ exports[`renders 2`] = `
     <form
       class="Search-input"
     >
-      <input
-        class="form-control form-control-lg"
-        placeholder="Search"
-        type="text"
-        value=""
-      />
+      <div
+        class="input-group"
+      >
+        <input
+          class="form-control form-control-lg"
+          placeholder="Search"
+          type="text"
+          value=""
+        />
+        <button
+          class="btn btn-secondary"
+          type="submit"
+        >
+          Search
+        </button>
+        <button
+          class="btn bg-transparent reset"
+        >
+          <i
+            class="fa fa-times"
+          />
+        </button>
+      </div>
     </form>
     <div
       class="container"
@@ -63,30 +97,7 @@ exports[`renders 2`] = `
         />
         <div
           class="col-8"
-        >
-          <div
-            class="Error"
-          >
-            <h2>
-              Something went wrong.
-            </h2>
-            <div
-              class="content container"
-            >
-              <div
-                class="row"
-              >
-                <div
-                  class="col"
-                >
-                  <p>
-                    Unable to load services.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        />
       </div>
     </div>
   </div>

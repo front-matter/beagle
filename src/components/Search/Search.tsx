@@ -54,14 +54,13 @@ interface ServiceQueryData {
 
 interface ServiceQueryVar {
     query: string;
-    cursor: string;
     pidEntity: string;
     fieldOfScience: string;
 }
 
 export const SERVICES_GQL = gql`
-query getServicesQuery($query: String!, $cursor: String, $pidEntity: String, $fieldOfScience: String) {
-    services(first: 25, query: $query, after: $cursor, repositoryId: "datacite.services", pidEntity: $pidEntity, fieldOfScience: $fieldOfScience) {
+query getServicesQuery($query: String!, $pidEntity: String, $fieldOfScience: String) {
+    services(query: $query, repositoryId: "datacite.services", pidEntity: $pidEntity, fieldOfScience: $fieldOfScience) {
         edges {
             node {
                 id
@@ -99,21 +98,54 @@ query getServicesQuery($query: String!, $cursor: String, $pidEntity: String, $fi
 
 export const Search: React.FunctionComponent = () => {
     const [searchQuery, setSearchQuery] = useQueryState("search", "");
+    const [finalSearchQuery, setFinalSearchQuery] = React.useState("");
+
+    const onSearchChange = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
+        setSearchQuery(e.currentTarget.value);
+    };
+
+    const onReset = (e: React.MouseEvent<FormControl & HTMLButtonElement>) => {
+        setSearchQuery("");
+    };
+
+    const handleSearch = () => {
+        setFinalSearchQuery(searchQuery);
+    }
+
+    return (
+        <div className="Search">
+            <Form key="search" className="Search-input" onSubmit={handleSearch}>
+                <InputGroup>
+                    <FormControl onChange={onSearchChange} size="lg" type="text" placeholder="Search" value={searchQuery} />
+                    <Button variant="secondary" type="submit">Search</Button>
+                    <button onClick={onReset} className="btn bg-transparent reset">
+                        <i className="fa fa-times"></i>
+                    </button>
+                </InputGroup>
+            </Form>
+
+            <SearchResults searchQuery={finalSearchQuery}></SearchResults>
+        </div>
+    );
+}
+
+type Props = {
+    searchQuery: string
+};
+
+export const SearchResults: React.FunctionComponent<Props> = (props) => {
     const [pidTypes, setPidTypes] = useQueryState<string[]>("pidtypes", []);
     const [disciplines, setDisciplines] = useQueryState<string[]>("disciplines", []);
     const [searchResults, setSearchResults] = React.useState<ServiceListingData[]>([]);
+
     const { loading, error, data, refetch, fetchMore } = useQuery<ServiceQueryData, ServiceQueryVar>(
         SERVICES_GQL,
         {
             errorPolicy: 'all',
             variables: {
-                query: searchQuery, cursor: "", pidEntity: pidTypes.toString(), fieldOfScience: disciplines.toString()
+                query: props.searchQuery, pidEntity: pidTypes.toString(), fieldOfScience: disciplines.toString()
             }
         })
-
-    const onSearchChange = (e: React.ChangeEvent<FormControl & HTMLInputElement>): void => {
-        setSearchQuery(e.currentTarget.value);
-    };
 
     const toggleFilters = (filters: string[], setFunc: Function, id: string) => {
         const activeFilters = filters.filter(t => t !== id);
@@ -122,44 +154,8 @@ export const Search: React.FunctionComponent = () => {
         );
     };
 
-    const resetSearch = () => {
-        setSearchQuery("");
-    };
-
-
-    const loadMore = (cursor: String) => {
-        fetchMore(
-            {
-                variables: { cursor: cursor },
-                updateQuery: (previousResult: ServiceQueryData, { fetchMoreResult }) => {
-                    if (!fetchMoreResult) { return previousResult; }
-
-                    const newEdges = fetchMoreResult.services.edges;
-                    const pageInfo = fetchMoreResult.services.pageInfo;
-                    const pidEntities = fetchMoreResult.services.pidEntities;
-                    const fieldsOfScience = fetchMoreResult.services.fieldsOfScience;
-                    const totalCount = fetchMoreResult.services.totalCount;
-
-                    return newEdges.length
-                        ? {
-                            services: {
-                                __typename: previousResult.services.__typename,
-                                edges: [...previousResult.services.edges, ...newEdges],
-                                pageInfo,
-                                pidEntities,
-                                fieldsOfScience,
-                                totalCount,
-                            }
-                        }
-                        : previousResult;
-                }
-            })
-    }
-
     React.useEffect(() => {
-        const typingDelay = setTimeout(() => {
-            refetch({ query: searchQuery, cursor: "", pidEntity: pidTypes.toString(), fieldOfScience: disciplines.toString() })
-        }, 300)
+        refetch({ query: props.searchQuery, pidEntity: pidTypes.toString(), fieldOfScience: disciplines.toString() });
 
         const results: ServiceListingData[] = [];
         if (data) {
@@ -193,9 +189,8 @@ export const Search: React.FunctionComponent = () => {
             setSearchResults(results);
         }
 
-        return () => clearTimeout(typingDelay)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [searchQuery, data, refetch]);
+    }, [props.searchQuery, data, refetch]);
 
     const renderResults = () => {
         if (loading) return <p>Loading...</p>;
@@ -214,12 +209,6 @@ export const Search: React.FunctionComponent = () => {
                         </li>
                     ))}
                 </ul>
-
-                {data.services.pageInfo.hasNextPage &&
-                    <div>
-                        <Button variant="secondary" onClick={() => loadMore(data.services.pageInfo.endCursor)} block>Show more</Button>
-                    </div>
-                }
             </div>
         )
     }
@@ -252,27 +241,17 @@ export const Search: React.FunctionComponent = () => {
     }
 
     return (
-        <div className="Search">
-            <Form key="search" className="Search-input">
-                <InputGroup>
-                    <FormControl onChange={onSearchChange} size="lg" type="text" placeholder="Search" value={searchQuery} />
-                    <button onClick={resetSearch} className="btn bg-transparent">
-                        <i className="fa fa-times"></i>
-                    </button>
-                </InputGroup>
-            </Form>
 
-            <Container>
-                <Row>
-                    <Col xs={4}>
-                        {renderFilters()}
-                    </Col>
-                    <Col xs={8}>
-                        {renderResults()}
-                    </Col>
-                </Row>
-            </Container>
-        </div>
+        <Container>
+            <Row>
+                <Col xs={4}>
+                    {renderFilters()}
+                </Col>
+                <Col xs={8}>
+                    {renderResults()}
+                </Col>
+            </Row>
+        </Container>
     );
 }
 

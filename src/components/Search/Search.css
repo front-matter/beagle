@@ -7,8 +7,8 @@
     margin-bottom: 2em;
 }
 
-.Search-input button {
-    margin-left: -40px; z-index: 100;
+.Search-input .reset {
+    margin-left: -110px; z-index: 100;
 }
 
 .Search-results ul {
