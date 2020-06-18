@@ -62,7 +62,7 @@ const About: React.FunctionComponent = () => {
                         </SyntaxHighlighter>
                     </code>
 
-                    <p>An important thing to realise here is that all services are registered under the repository <strong>"datacite.services"</strong>, without this it will return all services registered regardless if they are related to PID Services.</p>
+                    <p>All services DOIs are registered under the repository <strong>"datacite.services"</strong> so that only services associated with the registry are returned.</p>
 
                     <h4>More</h4>
                     <p>In addition to the GraphQL API, because these are registered as DataCite DOIs you may additionally query them using any other existing interface offered, other APIs are documented on the <a href="https://support.datacite.org/docs/api">DataCite support site.</a></p>
