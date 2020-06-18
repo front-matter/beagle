@@ -9,7 +9,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 import './Search.css';
-import { Container, Row, Col, Badge, ListGroup } from 'react-bootstrap';
+import { Container, Row, Col, Badge, ListGroup, InputGroup } from 'react-bootstrap';
 
 interface ServiceQueryResult {
     id: string;
@@ -120,6 +120,10 @@ export const Search: React.FunctionComponent = () => {
         setFunc(
             filters.includes(id) ? activeFilters : [...filters, id]
         );
+    };
+
+    const resetSearch = () => {
+        setSearchQuery("");
     };
 
 
@@ -250,7 +254,12 @@ export const Search: React.FunctionComponent = () => {
     return (
         <div className="Search">
             <Form key="search" className="Search-input">
-                <FormControl onChange={onSearchChange} size="lg" type="text" placeholder="Search" value={searchQuery} />
+                <InputGroup>
+                    <FormControl onChange={onSearchChange} size="lg" type="text" placeholder="Search" value={searchQuery} />
+                    <button onClick={resetSearch} className="btn bg-transparent">
+                        <i className="fa fa-times"></i>
+                    </button>
+                </InputGroup>
             </Form>
 
             <Container>

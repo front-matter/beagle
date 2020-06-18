@@ -7,6 +7,10 @@
     margin-bottom: 2em;
 }
 
+.Search-input button {
+    margin-left: -40px; z-index: 100;
+}
+
 .Search-results ul {
     list-style: none;
     padding: 0;
