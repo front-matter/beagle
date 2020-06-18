@@ -84,6 +84,7 @@ query getServicesQuery($query: String!, $cursor: String, $pidEntity: String, $fi
         },
         pidEntities {
             id
+            title
             count
         },
         fieldsOfScience {
@@ -229,7 +230,7 @@ export const Search: React.FunctionComponent = () => {
                     <ListGroup>
                         <h5>PID Types</h5>
                         {data.services.pidEntities.map(item => (
-                            <ListGroup.Item action key={item.id} active={pidTypes.includes(item.id)} onClick={() => toggleFilters(pidTypes, setPidTypes, item.id)}>{item.id}<Badge pill variant="secondary">{item.count}</Badge></ListGroup.Item>
+                            <ListGroup.Item action key={item.id} active={pidTypes.includes(item.id)} onClick={() => toggleFilters(pidTypes, setPidTypes, item.id)}>{item.title}<Badge pill variant="secondary">{item.count}</Badge></ListGroup.Item>
                         ))}
                     </ListGroup>
                 }

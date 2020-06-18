@@ -138,7 +138,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
 
             let fieldsOfScience: string[] = [];
             if ("Fields of Science and Technology (FOS)" in groupedSubjects) {
-                fieldsOfScience = groupedSubjects["Fields of Science and Technology (FOS)"].map(i => i.subject);
+                fieldsOfScience = groupedSubjects["Fields of Science and Technology (FOS)"].map(i => i.subject.replace("FOS: ", ""));
             }
 
             let pidEntityTypes: string[] = [];
@@ -201,7 +201,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
                     </Col>
                     <Col sm={4}>
                         <Card>
-                            <Card.Header>General info</Card.Header>
+                            <Card.Header>General</Card.Header>
                             <ListGroup>
                                 <ListGroup.Item>
                                     <InputGroup>
