@@ -138,7 +138,7 @@ export const SearchResults: React.FunctionComponent<Props> = (props) => {
     const [disciplines, setDisciplines] = useQueryState<string[]>("disciplines", []);
     const [searchResults, setSearchResults] = React.useState<ServiceListingData[]>([]);
 
-    const { loading, error, data, refetch, fetchMore } = useQuery<ServiceQueryData, ServiceQueryVar>(
+    const { loading, error, data, refetch } = useQuery<ServiceQueryData, ServiceQueryVar>(
         SERVICES_GQL,
         {
             errorPolicy: 'all',
