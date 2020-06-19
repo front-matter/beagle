@@ -154,6 +154,11 @@ export const SearchResults: React.FunctionComponent<Props> = (props) => {
         );
     };
 
+    const resetFilters = (e: React.MouseEvent<FormControl & HTMLButtonElement>) => {
+        setDisciplines([]);
+        setPidTypes([]);
+    };
+
     React.useEffect(() => {
         refetch({ query: props.searchQuery, pidEntity: pidTypes.toString(), fieldOfScience: disciplines.toString() });
 
@@ -218,7 +223,12 @@ export const SearchResults: React.FunctionComponent<Props> = (props) => {
 
         return (
             <div className="Search-filters">
-                <h4>Filters</h4>
+                <div>
+                    <h4>Filters</h4>
+                    <Button onClick={resetFilters} variant="link" className="p-0">
+                        <i className="fa fa-times"> Reset</i>
+                    </Button>
+                </div>
                 {data.services.pidEntities.length > 0 &&
                     <ListGroup>
                         <h5>PID Types</h5>
