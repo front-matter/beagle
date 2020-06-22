@@ -16,7 +16,7 @@ const mocks = [
       data: {
         service: {
           id: 'https://handle.test.datacite.org/10.24427/141E-N846',
-          doi: '10.24427/141E-N846' ,
+          doi: '10.24427/141E-N846',
           titles: [{
             title: "This is a test service."
           }],
@@ -44,7 +44,7 @@ test('renders', async () => {
   expect(container).toMatchSnapshot();
 
   // wait for content
-  await wait(()=> container);
+  await wait(() => container);
 
   // take a snapshot of the rendered content (error or data)
   expect(container).toMatchSnapshot();
