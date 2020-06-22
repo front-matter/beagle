@@ -21,6 +21,8 @@ import Search from '../Search/Search';
 import ServiceOverview from '../ServiceOverview/ServiceOverview';
 import Error from '../Error/Error';
 import About from '../About/About';
+import Tracking from '../Tracking/Tracking';
+
 
 const client = new ApolloClient({
   link: ApolloLink.from([
@@ -50,7 +52,7 @@ function App() {
             <LinkContainer to="/">
               <Navbar.Brand data-testid="navbar-brand"><span className="brand-highlight">PID</span> Services Registry</Navbar.Brand>
             </LinkContainer>
-            <LinkContainer to="/">
+            <LinkContainer to="/services">
               <Nav.Link>Services</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/about">
@@ -75,7 +77,7 @@ function App() {
         <main role="main">
           <Container>
             <Switch>
-              <Route exact path="/">
+              <Route exact path={["/", "/services"]}>
                 <Services />
               </Route>
               <Route path="/services/:serviceId+">
@@ -109,8 +111,9 @@ function App() {
             </Row>
           </Container>
         </footer>
+        <Tracking />
       </Router>
-    </ApolloProvider>
+    </ApolloProvider >
   );
 }
 
