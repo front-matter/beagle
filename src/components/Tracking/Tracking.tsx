@@ -4,9 +4,7 @@ import ReactGA from 'react-ga';
 import { useHistory } from 'react-router-dom'
 
 if (['production'].includes(process.env.NODE_ENV)) {
-    ReactGA.initialize(process.env.REACT_APP_GA_ANALYTICS_UA || '', {
-        debug: true,
-    });
+    ReactGA.initialize(process.env.REACT_APP_GA_ANALYTICS_UA || '');
     ReactGA.pageview(window.location.pathname + window.location.search);
 }
 
