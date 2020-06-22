@@ -60,7 +60,7 @@ interface ServiceQueryVar {
 
 export const SERVICES_GQL = gql`
 query getServicesQuery($query: String!, $pidEntity: String, $fieldOfScience: String) {
-    services(query: $query, repositoryId: "datacite.services", pidEntity: $pidEntity, fieldOfScience: $fieldOfScience) {
+    services(query: $query, repositoryId: "datacite.services", pidEntity: $pidEntity, fieldOfScience: $fieldOfScience, first:500) {
         edges {
             node {
                 id
