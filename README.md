@@ -5,13 +5,13 @@ Beagle
 
 This is the code repository behind the PID Services Registry [https://pidservices.org](https://pidservices.org)
 
-Developed under the project goals of the Freya Project: [https://www.project-freya.eu/](https://www.project-freya.eu/)
+Developed under the project goals of the FREYA Project: [https://www.project-freya.eu/](https://www.project-freya.eu/)
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -19,11 +19,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `yarn test`
+### `npm test`
 
 Launches the CLI test runner in the interactive watch mode.
 
-### `yarn build`
+### `npm build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.

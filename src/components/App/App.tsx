@@ -4,7 +4,8 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  useParams
 } from "react-router-dom";
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -15,10 +16,13 @@ import { HttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-
+import { Container, Row, Col, Navbar, Nav } from 'react-bootstrap';
 import Search from '../Search/Search';
+import ServiceOverview from '../ServiceOverview/ServiceOverview';
+import Error from '../Error/Error';
+import About from '../About/About';
+import Tracking from '../Tracking/Tracking';
+
 
 const client = new ApolloClient({
   link: ApolloLink.from([
@@ -32,7 +36,7 @@ const client = new ApolloClient({
       if (networkError) console.log(`[Network error]: ${networkError}`);
     }),
     new HttpLink({
-      uri: 'https://api.test.datacite.org/graphql',
+      uri: process.env.REACT_APP_GRAPHQL_API_URL,
       credentials: 'same-origin'
     })
   ]),
@@ -42,70 +46,89 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-    <Router>
-      <div className="App">
+      <Router>
         <header className="App-header">
-          <Navbar bg="dark" variant="dark">
+          <Navbar>
             <LinkContainer to="/">
-              <Navbar.Brand data-testid="navbar-brand">PID Services Registry</Navbar.Brand>
+              <Navbar.Brand data-testid="navbar-brand"><span className="brand-highlight">PID</span> Services Registry</Navbar.Brand>
             </LinkContainer>
-            <Nav className="mr-auto">
-              <LinkContainer exact to="/">
-                <Nav.Link>Home</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/services">
-                <Nav.Link>Services</Nav.Link>
-              </LinkContainer>
-            </Nav>
+            <LinkContainer to="/services">
+              <Nav.Link>Services</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/about">
+              <Nav.Link>About</Nav.Link>
+            </LinkContainer>
           </Navbar>
+          <div className="App-header-content">
+            <Container>
+              <Row>
+                <Col>
+                  <h1>Welcome to the PID Services registry.</h1>
+                  <p>
+                    This registry provides an overview of services related to Persistent Identifiers (PIDs). The PID Services Registry is maintained by DataCite and was developed within the FREYA project.
+                  For more information about the registry contact <a href="mailto:support@datacite.org">support@datacite.org</a>
+                  </p>
+                </Col>
+              </Row>
+            </Container>
+          </div>
         </header>
 
-        <main role="main" className="App-main flex-shrink-0">
-          <div className="container">
-          <Switch>
-              <Route path="/services">
+        <main role="main">
+          <Container>
+            <Switch>
+              <Route exact path={["/", "/services"]}>
                 <Services />
               </Route>
-              <Route exact path="/">
-                <Home />
+              <Route path="/services/:serviceId+">
+                <Service />
               </Route>
-          </Switch>
-          </div>
+              <Route exact path="/about">
+                <About />
+              </Route>
+              <Route path="*">
+                <Error title="Not found" message="The page you are looking for can not be found." />
+              </Route>
+            </Switch>
+          </Container>
         </main>
 
-        <footer className="App-footer mt-auto py-3">
-          <div className="container text-muted">
-            <div className="row">
-              <div className="col-sm-6">
-              <p>
-                The PID Services Registry is part of the <a href="https://www.project-freya.eu">FREYA project</a> and is maintained by <a href="https://www.datacite.org">DataCite</a>
-              </p>
-              </div>
-              <div className="col-sm-6">
-                  <p>The FREYA project has received funding from the <a href="https://ec.europa.eu/programmes/horizon2020/en">European Union’s Horizon 2020</a> research and innovation programme under grant agreement No 777523.</p>
-              </div>
-            </div>
-
-          </div>
+        <footer className="App-footer py-3">
+          <Container>
+            <Row>
+              <Col sm={6}>
+                <p>
+                  The PID Services Registry is maintained by <a href="https://www.datacite.org">DataCite</a> and was developed within the <a href="https://www.project-freya.eu">FREYA project</a> .
+                </p>
+                <p>
+                  <img src="/freya_logo.png" width="100" alt="FREYA" />
+                  <img src="/eosc_logo-trs.png" width="200" alt="FREYA" />
+                </p>
+              </Col>
+              <Col sm={6}>
+                <p>The FREYA project has received funding from the <a href="https://ec.europa.eu/programmes/horizon2020/en">European Union’s Horizon 2020</a> research and innovation programme under grant agreement No 777523.</p>
+              </Col>
+            </Row>
+          </Container>
         </footer>
-
-      </div>
-    </Router>
-    </ApolloProvider>
+        <Tracking />
+      </Router>
+    </ApolloProvider >
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
 }
 
 function Services() {
   return (
-    <div>
-    <h2>Services</h2>
     <Search></Search>
-    </div>
   );
+}
+
+function Service() {
+  let { serviceId } = useParams();
+
+  return (
+    <ServiceOverview serviceId={serviceId} />
+  )
 }
 
 export default App;

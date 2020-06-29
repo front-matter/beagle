@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import './index.css';
 import * as Sentry from '@sentry/browser';
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
 
 if (['production', 'test'].includes(process.env.NODE_ENV)) {
-    Sentry.init({dsn: process.env.SENTRY_DSN });
+    Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN });
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
