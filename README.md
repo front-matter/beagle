@@ -1,6 +1,8 @@
 Beagle
 ======
 
+[![Identifier](https://img.shields.io/badge/doi-10.14454%2Fe0f7--zs08-fca709.svg)](https://doi.org/10.14454/e0f7-zs08)
+
 This is the code repository behind the PID Services Registry [https://pidservices.org](https://pidservices.org)
 
 Developed under the project goals of the Freya Project: [https://www.project-freya.eu/](https://www.project-freya.eu/)
