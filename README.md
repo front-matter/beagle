@@ -2,6 +2,7 @@ Beagle
 ======
 
 [![Identifier](https://img.shields.io/badge/doi-10.14454%2Fe0f7--zs08-fca709.svg)](https://doi.org/10.14454/e0f7-zs08)
+[![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:4e184648a660762b1abfd9d7052fbe6d83fca94c/)](https://archive.softwareheritage.org/swh:1:dir:4e184648a660762b1abfd9d7052fbe6d83fca94c/)
 
 This is the code repository behind the PID Services Registry [https://pidservices.org](https://pidservices.org)
 
