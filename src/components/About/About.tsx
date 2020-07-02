@@ -46,7 +46,7 @@ const About: React.FunctionComponent = () => {
                             <tr><td>Service Language</td><td>Language</td><td>ISO 639-1 language codes</td></tr>
                             <tr><td>Geographic Availability</td><td>GeolocationPlace</td><td>Worldwide, region e.g. Europe or ISO Country Codes</td></tr>
                             <tr><td>Service Tagline</td><td>Title</td><td>type="Subtitle"</td></tr>
-                            <tr><td>Service Category</td><td>Subject</td><td>subjectScheme="ServiceCategory" with values of: Service &amp; Discovery, Processing &amp; Analysis, Compute, Storage, Data Management, Networking, Training and Support, Security and Operations</td></tr>
+                            <tr><td>Service Category</td><td>Subject</td><td>subjectScheme="ServiceCategory" with values of: Sharing &amp; Discovery, Processing &amp; Analysis, Compute, Storage, Data Management, Networking, Training and Support, Security and Operations</td></tr>
                             <tr><td>Service Tags</td><td>Subject</td><td>subjectScheme="ServiceTag"</td></tr>
                             <tr><td>Scientific Fields</td><td>Subject</td><td>subjectScheme="Fields of Science and Technology (FOS)", values based on <a href="http://www.oecd.org/science/inno/38235147.pdf">OECD</a></td></tr>
                             <tr><td>TRL</td><td>Subject</td><td>subjectScheme="TRL"</td></tr>
