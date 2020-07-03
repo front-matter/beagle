@@ -48,16 +48,21 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <header className="App-header">
-          <Navbar>
+          <Navbar expand="lg">
+            <Navbar.Toggle aria-controls="navbar-nav" />
             <LinkContainer to="/">
               <Navbar.Brand data-testid="navbar-brand"><span className="brand-highlight">PID</span> Services Registry</Navbar.Brand>
             </LinkContainer>
-            <LinkContainer to="/services">
-              <Nav.Link>Services</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/about">
-              <Nav.Link>About</Nav.Link>
-            </LinkContainer>
+            <Navbar.Collapse id="navbar-nav">
+              <Nav>
+                <LinkContainer to="/services">
+                  <Nav.Link>Services</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/about">
+                  <Nav.Link>About</Nav.Link>
+                </LinkContainer>
+              </Nav>
+            </Navbar.Collapse>
           </Navbar>
           <div className="App-header-content">
             <Container>
