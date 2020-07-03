@@ -3,7 +3,7 @@
 exports[`renders 1`] = `
 <div>
   <div
-    class="Search"
+    class="Search container"
   >
     <form
       class="Search-input"
@@ -11,6 +11,18 @@ exports[`renders 1`] = `
       <div
         class="input-group"
       >
+        <div
+          class="input-group-prepend"
+        >
+          <button
+            class="bg-transparent btn btn-primary"
+            type="button"
+          >
+            <i
+              class="fa fa-times"
+            />
+          </button>
+        </div>
         <input
           class="form-control form-control-lg"
           placeholder="Search"
@@ -27,13 +39,6 @@ exports[`renders 1`] = `
             Search
           </button>
         </div>
-        <button
-          class="btn bg-transparent reset"
-        >
-          <i
-            class="fa fa-times"
-          />
-        </button>
       </div>
     </form>
     <div
@@ -61,7 +66,7 @@ exports[`renders 1`] = `
 exports[`renders 2`] = `
 <div>
   <div
-    class="Search"
+    class="Search container"
   >
     <form
       class="Search-input"
@@ -69,6 +74,18 @@ exports[`renders 2`] = `
       <div
         class="input-group"
       >
+        <div
+          class="input-group-prepend"
+        >
+          <button
+            class="bg-transparent btn btn-primary"
+            type="button"
+          >
+            <i
+              class="fa fa-times"
+            />
+          </button>
+        </div>
         <input
           class="form-control form-control-lg"
           placeholder="Search"
@@ -85,13 +102,6 @@ exports[`renders 2`] = `
             Search
           </button>
         </div>
-        <button
-          class="btn bg-transparent reset"
-        >
-          <i
-            class="fa fa-times"
-          />
-        </button>
       </div>
     </form>
     <div

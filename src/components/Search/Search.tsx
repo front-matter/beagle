@@ -113,22 +113,23 @@ export const Search: React.FunctionComponent = () => {
     }
 
     return (
-        <div className="Search">
+        <Container className="Search">
             <Form key="search" className="Search-input" onSubmit={handleSearch}>
                 <InputGroup>
+                    <InputGroup.Prepend>
+                        <Button onClick={onReset} className="bg-transparent">
+                            <i className="fa fa-times"></i>
+                        </Button>
+                    </InputGroup.Prepend>
                     <FormControl onChange={onSearchChange} size="lg" type="text" placeholder="Search" value={searchQuery} />
                     <InputGroup.Append>
                         <Button variant="secondary" type="submit">Search</Button>
                     </InputGroup.Append>
-
-                    <button onClick={onReset} className="btn bg-transparent reset">
-                        <i className="fa fa-times"></i>
-                    </button>
                 </InputGroup>
             </Form>
 
             <SearchResults searchQuery={finalSearchQuery}></SearchResults>
-        </div>
+        </Container>
     );
 }
 
