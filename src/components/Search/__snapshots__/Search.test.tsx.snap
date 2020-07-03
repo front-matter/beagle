@@ -17,12 +17,16 @@ exports[`renders 1`] = `
           type="text"
           value=""
         />
-        <button
-          class="btn btn-secondary"
-          type="submit"
+        <div
+          class="input-group-append"
         >
-          Search
-        </button>
+          <button
+            class="btn btn-secondary"
+            type="submit"
+          >
+            Search
+          </button>
+        </div>
         <button
           class="btn bg-transparent reset"
         >
@@ -39,10 +43,10 @@ exports[`renders 1`] = `
         class="row"
       >
         <div
-          class="col-4"
+          class="col-sm-4"
         />
         <div
-          class="col-8"
+          class="col-sm-8"
         >
           <p>
             Loading...
@@ -71,12 +75,16 @@ exports[`renders 2`] = `
           type="text"
           value=""
         />
-        <button
-          class="btn btn-secondary"
-          type="submit"
+        <div
+          class="input-group-append"
         >
-          Search
-        </button>
+          <button
+            class="btn btn-secondary"
+            type="submit"
+          >
+            Search
+          </button>
+        </div>
         <button
           class="btn bg-transparent reset"
         >
@@ -93,10 +101,10 @@ exports[`renders 2`] = `
         class="row"
       >
         <div
-          class="col-4"
+          class="col-sm-4"
         />
         <div
-          class="col-8"
+          class="col-sm-8"
         />
       </div>
     </div>
