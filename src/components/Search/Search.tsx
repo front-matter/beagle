@@ -117,7 +117,10 @@ export const Search: React.FunctionComponent = () => {
             <Form key="search" className="Search-input" onSubmit={handleSearch}>
                 <InputGroup>
                     <FormControl onChange={onSearchChange} size="lg" type="text" placeholder="Search" value={searchQuery} />
-                    <Button variant="secondary" type="submit">Search</Button>
+                    <InputGroup.Append>
+                        <Button variant="secondary" type="submit">Search</Button>
+                    </InputGroup.Append>
+
                     <button onClick={onReset} className="btn bg-transparent reset">
                         <i className="fa fa-times"></i>
                     </button>
@@ -254,10 +257,10 @@ export const SearchResults: React.FunctionComponent<Props> = (props) => {
 
         <Container>
             <Row>
-                <Col xs={4}>
+                <Col sm={4}>
                     {renderFilters()}
                 </Col>
-                <Col xs={8}>
+                <Col sm={8}>
                     {renderResults()}
                 </Col>
             </Row>
