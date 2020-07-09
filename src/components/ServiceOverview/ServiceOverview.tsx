@@ -1,3 +1,5 @@
+import './ServiceOverview.css';
+
 import React, { useRef } from 'react';
 import ISO6391 from 'iso-639-1';
 import groupby from 'lodash.groupby';
@@ -5,8 +7,9 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Container, Row, Col, Button, InputGroup, FormControl, ListGroup, Card } from 'react-bootstrap';
 import Error from '../Error/Error';
+import { Html5Entities } from 'html-entities';
 
-import './ServiceOverview.css';
+const htmlEntities = new Html5Entities();
 
 export interface ServiceDetailData {
     id: string;
@@ -236,7 +239,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
                                 <ListGroup variant="flush">
                                     {service.fieldsOfScience.map(item => (
                                         <ListGroup.Item key={item}>
-                                            {item}
+                                            {htmlEntities.decode(item)}
                                         </ListGroup.Item>
                                     ))}
                                 </ListGroup>
@@ -249,7 +252,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
                                 <ListGroup variant="flush">
                                     {service.category.map(item => (
                                         <ListGroup.Item key={item}>
-                                            {item}
+                                            {htmlEntities.decode(item)}
                                         </ListGroup.Item>
                                     ))
                                     }
@@ -263,7 +266,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
                                 <ListGroup variant="flush">
                                     {service.pidEntityTypes.map(item => (
                                         <ListGroup.Item key={item}>
-                                            {item}
+                                            {htmlEntities.decode(item)}
                                         </ListGroup.Item>
                                     ))}
                                 </ListGroup>
@@ -276,7 +279,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
                                 <ListGroup variant="flush">
                                     {service.tags.map(item => (
                                         <ListGroup.Item key={item}>
-                                            {item}
+                                            {htmlEntities.decode(item)}
                                         </ListGroup.Item>
                                     ))
                                     }
