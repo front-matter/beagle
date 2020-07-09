@@ -38,7 +38,7 @@ const About: React.FunctionComponent = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>PID Type</td><td>Subject</td><td>subjectScheme="PidEntity" with values of: Publication, Citation, Conference, Researcher, Organization, Data, DataRepository, Grants, Project, Experiment, Investigation, Analysis, Software, Computer Simulation, Software License, Equipment, Sample</td></tr>
+                            <tr><td>PID Type</td><td>Subject</td><td>subjectScheme="PidEntity" with values of: Publication, Citation, Conference, Researcher, Organization, Dataset, DataRepository, Grants, Project, Experiment, Investigation, Analysis, Software, Computer Simulation, Software License, Equipment, Sample</td></tr>
                             <tr><td>Service Provider Name</td><td>Creator/CreatorName</td><td>creatorName with nameType=Organizational</td></tr>
                             <tr><td>Service Provider URL</td><td>Creator/NameIdentifier</td><td>A <a href="https://ror.org/">ROR Identifier</a></td></tr>
                             <tr><td>Service Name</td><td>Title</td><td>First title will be used</td></tr>
