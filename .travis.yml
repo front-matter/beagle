@@ -27,7 +27,7 @@
       - sentry-cli --version
 
     script:
-      - npm build
+      - npm run-script build
       - npm test
 
     after_success:
