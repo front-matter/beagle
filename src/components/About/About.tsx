@@ -25,6 +25,9 @@ const About: React.FunctionComponent = () => {
                     <p>
                         This registry provides an overview of services related to Persistent Identifiers (PIDs).
                     </p>
+                    <p>
+                        To register please send an email to <a href="mailto:support@datacite.org">support@datacite.org</a> with the required (below) metadata for your service.
+                    </p>
                     <h3>Metadata</h3>
                     <p>
                         All services are registered as a <a href="https://doi.org">DOI</a> provided by <a href="https://www.datacite.org">DataCite</a> and uses the associated DataCite metadata schema to describe the services.
@@ -38,18 +41,19 @@ const About: React.FunctionComponent = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>PID Type</td><td>Subject</td><td>subjectScheme="PidEntity" with values of: Publication, Citation, Conference, Researcher, Organization, Dataset, DataRepository, Grants, Project, Experiment, Investigation, Analysis, Software, Computer Simulation, Software License, Equipment, Sample</td></tr>
+                            <tr><td>PID Type</td><td>Subject</td><td>subjectScheme="PidEntity" <br /> with values of: Publication, Citation, Conference, Researcher, Organization, Dataset, DataRepository, Grants, Project, Experiment, Investigation, Analysis, Software, Computer Simulation, Software License, Equipment, Sample</td></tr>
                             <tr><td>Service Provider Name</td><td>Creator/CreatorName</td><td>creatorName with nameType=Organizational</td></tr>
-                            <tr><td>Service Provider URL</td><td>Creator/NameIdentifier</td><td>A <a href="https://ror.org/">ROR Identifier</a></td></tr>
+                            <tr><td>Service Provider URL</td><td>Creator/NameIdentifier</td><td>A <a href="https://ror.org/">ROR Identifier</a> where available.</td></tr>
                             <tr><td>Service Name</td><td>Title</td><td>First title will be used</td></tr>
+                            <tr><td>Service Tagline</td><td>Title</td><td>type="Subtitle"</td></tr>
                             <tr><td>Service Description</td><td>Description</td><td>First description will be used</td></tr>
+                            <tr><td>Service Publication Year</td><td>Description</td><td>Date of service publication</td></tr>
                             <tr><td>Service Language</td><td>Language</td><td>ISO 639-1 language codes</td></tr>
                             <tr><td>Geographic Availability</td><td>GeolocationPlace</td><td>Worldwide, region e.g. Europe or ISO Country Codes</td></tr>
-                            <tr><td>Service Tagline</td><td>Title</td><td>type="Subtitle"</td></tr>
                             <tr><td>Service Category</td><td>Subject</td><td>subjectScheme="ServiceCategory" with values of: Sharing &amp; Discovery, Processing &amp; Analysis, Compute, Storage, Data Management, Networking, Training and Support, Security and Operations</td></tr>
                             <tr><td>Service Tags</td><td>Subject</td><td>subjectScheme="ServiceTag"</td></tr>
                             <tr><td>Scientific Fields</td><td>Subject</td><td>subjectScheme="Fields of Science and Technology (FOS)", values based on <a href="http://www.oecd.org/science/inno/38235147.pdf">OECD</a></td></tr>
-                            <tr><td>TRL</td><td>Subject</td><td>subjectScheme="TRL"</td></tr>
+                            <tr><td>TRL</td><td>Subject</td><td>subjectScheme="TRL" <br /> 8 or 9 services as defined by <a href="https://en.wikipedia.org/wiki/Technology_readiness_level#European_Union">EU Technology Readiness</a></td></tr>
                         </tbody>
                     </Table>
                     <h3>API</h3>
