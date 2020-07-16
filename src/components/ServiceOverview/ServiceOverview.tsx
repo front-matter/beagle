@@ -1,7 +1,6 @@
 import './ServiceOverview.css';
 
 import React, { useRef } from 'react';
-import ISO6391 from 'iso-639-1';
 import groupby from 'lodash.groupby';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -48,7 +47,9 @@ interface ServiceQueryResult {
     creators: [{
         name: string
     }];
-    language: string;
+    language: {
+        name: string
+    };
     subjects: [{
         subject: string,
         subjectScheme: string
@@ -83,7 +84,9 @@ query getServiceQuery($id: ID!) {
               id
             }
         },
-    	language,
+    	language {
+            name
+        }
     	subjects {
           subject,
           subjectScheme,
@@ -172,7 +175,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
                 tagline: tagline,
                 description: description,
                 creators: creators,
-                language: dataset.language,
+                language: dataset.language.name,
                 fieldsOfScience: fieldsOfScience,
                 pidEntityTypes: pidEntityTypes,
                 category: category,
@@ -223,7 +226,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
                                 </ListGroup.Item>
                                 {service.language &&
                                     <ListGroup.Item>
-                                        <strong>Primary language:</strong> {ISO6391.getName(service.language)}
+                                        <strong>Primary language:</strong> {service.language}
                                     </ListGroup.Item>
                                 }
                                 {service.trl &&
