@@ -5,8 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { ServiceListingData, ServiceListingItem } from '../ServiceListingItem/ServiceListingItem';
 import Error from '../Error/Error';
 import { useQueryState } from "use-location-state";
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import { useQuery, gql } from '@apollo/client';
 
 import './Search.css';
 import { Container, Row, Col, Badge, ListGroup, InputGroup } from 'react-bootstrap';
