@@ -112,10 +112,88 @@ exports[`renders 2`] = `
       >
         <div
           class="col-sm-4"
-        />
+        >
+          <div
+            class="Search-filters"
+          >
+            <div>
+              <h4>
+                Filters
+              </h4>
+              <button
+                class="p-0 btn btn-link"
+                type="button"
+              >
+                <i
+                  class="fa fa-times"
+                >
+                   Reset
+                </i>
+              </button>
+            </div>
+            <div
+              class="list-group"
+            >
+              <h5>
+                PID Types
+              </h5>
+              <button
+                class="list-group-item list-group-item-action"
+              >
+                Dataset
+                <span
+                  class="badge badge-pill badge-secondary"
+                >
+                  1
+                </span>
+              </button>
+              <button
+                class="list-group-item list-group-item-action"
+              >
+                Publication
+                <span
+                  class="badge badge-pill badge-secondary"
+                >
+                  2
+                </span>
+              </button>
+            </div>
+            <div
+              class="list-group"
+            >
+              <h5>
+                Disciplines
+              </h5>
+              <button
+                class="list-group-item list-group-item-action"
+              >
+                Computer and information sciences
+                <span
+                  class="badge badge-pill badge-secondary"
+                >
+                  1
+                </span>
+              </button>
+              <button
+                class="list-group-item list-group-item-action"
+              >
+                Physical sciences
+                <span
+                  class="badge badge-pill badge-secondary"
+                >
+                  1
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
         <div
           class="col-sm-8"
-        />
+        >
+          <p>
+            Loading...
+          </p>
+        </div>
       </div>
     </div>
   </div>

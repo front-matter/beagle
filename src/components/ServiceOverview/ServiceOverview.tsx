@@ -2,8 +2,8 @@ import './ServiceOverview.css';
 
 import React, { useRef } from 'react';
 import groupby from 'lodash.groupby';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import { useQuery, gql } from '@apollo/client';
+
 import { Container, Row, Col, Button, InputGroup, FormControl, ListGroup, Card } from 'react-bootstrap';
 import Error from '../Error/Error';
 import { Html5Entities } from 'html-entities';
