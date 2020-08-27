@@ -190,9 +190,86 @@ exports[`renders 2`] = `
         <div
           class="col-sm-8"
         >
-          <p>
-            Loading...
-          </p>
+          <div
+            class="Search-results"
+          >
+            <p>
+              Num services: 
+              2
+            </p>
+            <ul>
+              <li>
+                <div
+                  class="card"
+                >
+                  <div
+                    class="card-body"
+                  >
+                    <div
+                      class="card-title h5"
+                    >
+                      <a
+                        href="/services/10.24427/141E-N846"
+                      >
+                        This is a test service.
+                      </a>
+                    </div>
+                    <div
+                      class="mb-2 text-muted card-subtitle h6"
+                    >
+                      Example Inc
+                    </div>
+                    <p
+                      class="card-text"
+                    >
+                      This test service is rendered using mocked data.
+                    </p>
+                    <a
+                      class="card-link"
+                      href="https://handle.test.datacite.org/10.24427/141E-N846"
+                    >
+                      Access Service
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div
+                  class="card"
+                >
+                  <div
+                    class="card-body"
+                  >
+                    <div
+                      class="card-title h5"
+                    >
+                      <a
+                        href="/services/10.24427/8gt9-nk59"
+                      >
+                        This is a test service.
+                      </a>
+                    </div>
+                    <div
+                      class="mb-2 text-muted card-subtitle h6"
+                    >
+                      Acme Inc
+                    </div>
+                    <p
+                      class="card-text"
+                    >
+                      This test service is rendered using mocked data.
+                    </p>
+                    <a
+                      class="card-link"
+                      href="https://handle.test.datacite.org/10.24427/8gt9-nk59"
+                    >
+                      Access Service
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
