@@ -3,7 +3,7 @@
 exports[`renders 1`] = `
 <div>
   <div
-    class="Search"
+    class="Search container"
   >
     <form
       class="Search-input"
@@ -11,25 +11,34 @@ exports[`renders 1`] = `
       <div
         class="input-group"
       >
+        <div
+          class="input-group-prepend"
+        >
+          <button
+            class="bg-transparent btn btn-primary"
+            type="button"
+          >
+            <i
+              class="fa fa-times"
+            />
+          </button>
+        </div>
         <input
           class="form-control form-control-lg"
           placeholder="Search"
           type="text"
           value=""
         />
-        <button
-          class="btn btn-secondary"
-          type="submit"
+        <div
+          class="input-group-append"
         >
-          Search
-        </button>
-        <button
-          class="btn bg-transparent reset"
-        >
-          <i
-            class="fa fa-times"
-          />
-        </button>
+          <button
+            class="btn btn-secondary"
+            type="submit"
+          >
+            Search
+          </button>
+        </div>
       </div>
     </form>
     <div
@@ -39,10 +48,10 @@ exports[`renders 1`] = `
         class="row"
       >
         <div
-          class="col-4"
+          class="col-sm-4"
         />
         <div
-          class="col-8"
+          class="col-sm-8"
         >
           <p>
             Loading...
@@ -57,7 +66,7 @@ exports[`renders 1`] = `
 exports[`renders 2`] = `
 <div>
   <div
-    class="Search"
+    class="Search container"
   >
     <form
       class="Search-input"
@@ -65,25 +74,34 @@ exports[`renders 2`] = `
       <div
         class="input-group"
       >
+        <div
+          class="input-group-prepend"
+        >
+          <button
+            class="bg-transparent btn btn-primary"
+            type="button"
+          >
+            <i
+              class="fa fa-times"
+            />
+          </button>
+        </div>
         <input
           class="form-control form-control-lg"
           placeholder="Search"
           type="text"
           value=""
         />
-        <button
-          class="btn btn-secondary"
-          type="submit"
+        <div
+          class="input-group-append"
         >
-          Search
-        </button>
-        <button
-          class="btn bg-transparent reset"
-        >
-          <i
-            class="fa fa-times"
-          />
-        </button>
+          <button
+            class="btn btn-secondary"
+            type="submit"
+          >
+            Search
+          </button>
+        </div>
       </div>
     </form>
     <div
@@ -93,11 +111,166 @@ exports[`renders 2`] = `
         class="row"
       >
         <div
-          class="col-4"
-        />
+          class="col-sm-4"
+        >
+          <div
+            class="Search-filters"
+          >
+            <div>
+              <h4>
+                Filters
+              </h4>
+              <button
+                class="p-0 btn btn-link"
+                type="button"
+              >
+                <i
+                  class="fa fa-times"
+                >
+                   Reset
+                </i>
+              </button>
+            </div>
+            <div
+              class="list-group"
+            >
+              <h5>
+                PID Types
+              </h5>
+              <button
+                class="list-group-item list-group-item-action"
+              >
+                Dataset
+                <span
+                  class="badge badge-pill badge-secondary"
+                >
+                  1
+                </span>
+              </button>
+              <button
+                class="list-group-item list-group-item-action"
+              >
+                Publication
+                <span
+                  class="badge badge-pill badge-secondary"
+                >
+                  2
+                </span>
+              </button>
+            </div>
+            <div
+              class="list-group"
+            >
+              <h5>
+                Disciplines
+              </h5>
+              <button
+                class="list-group-item list-group-item-action"
+              >
+                Computer and information sciences
+                <span
+                  class="badge badge-pill badge-secondary"
+                >
+                  1
+                </span>
+              </button>
+              <button
+                class="list-group-item list-group-item-action"
+              >
+                Physical sciences
+                <span
+                  class="badge badge-pill badge-secondary"
+                >
+                  1
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
         <div
-          class="col-8"
-        />
+          class="col-sm-8"
+        >
+          <div
+            class="Search-results"
+          >
+            <p>
+              Num services: 
+              2
+            </p>
+            <ul>
+              <li>
+                <div
+                  class="card"
+                >
+                  <div
+                    class="card-body"
+                  >
+                    <div
+                      class="card-title h5"
+                    >
+                      <a
+                        href="/services/10.24427/141E-N846"
+                      >
+                        This is a test service.
+                      </a>
+                    </div>
+                    <div
+                      class="mb-2 text-muted card-subtitle h6"
+                    >
+                      Example Inc
+                    </div>
+                    <p
+                      class="card-text"
+                    >
+                      This test service is rendered using mocked data.
+                    </p>
+                    <a
+                      class="card-link"
+                      href="https://handle.test.datacite.org/10.24427/141E-N846"
+                    >
+                      Access Service
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div
+                  class="card"
+                >
+                  <div
+                    class="card-body"
+                  >
+                    <div
+                      class="card-title h5"
+                    >
+                      <a
+                        href="/services/10.24427/8gt9-nk59"
+                      >
+                        This is a test service.
+                      </a>
+                    </div>
+                    <div
+                      class="mb-2 text-muted card-subtitle h6"
+                    >
+                      Acme Inc
+                    </div>
+                    <p
+                      class="card-text"
+                    >
+                      This test service is rendered using mocked data.
+                    </p>
+                    <a
+                      class="card-link"
+                      href="https://handle.test.datacite.org/10.24427/8gt9-nk59"
+                    >
+                      Access Service
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

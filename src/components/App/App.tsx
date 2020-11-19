@@ -9,12 +9,8 @@ import {
 } from "react-router-dom";
 import { LinkContainer } from 'react-router-bootstrap';
 
-import { ApolloProvider } from '@apollo/react-hooks';
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
-import { onError } from 'apollo-link-error';
-import { ApolloLink } from 'apollo-link';
+import { ApolloProvider, ApolloClient, InMemoryCache, HttpLink, ApolloLink } from '@apollo/client';
+import { onError } from "@apollo/client/link/error";
 
 import { Container, Row, Col, Navbar, Nav } from 'react-bootstrap';
 import Search from '../Search/Search';
@@ -48,16 +44,21 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <header className="App-header">
-          <Navbar>
+          <Navbar expand="lg">
+            <Navbar.Toggle aria-controls="navbar-nav" />
             <LinkContainer to="/">
               <Navbar.Brand data-testid="navbar-brand"><span className="brand-highlight">PID</span> Services Registry</Navbar.Brand>
             </LinkContainer>
-            <LinkContainer to="/services">
-              <Nav.Link>Services</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/about">
-              <Nav.Link>About</Nav.Link>
-            </LinkContainer>
+            <Navbar.Collapse id="navbar-nav">
+              <Nav>
+                <LinkContainer to="/services">
+                  <Nav.Link>Services</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/about">
+                  <Nav.Link>About</Nav.Link>
+                </LinkContainer>
+              </Nav>
+            </Navbar.Collapse>
           </Navbar>
           <div className="App-header-content">
             <Container>

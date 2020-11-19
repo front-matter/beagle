@@ -1,12 +1,14 @@
+import './ServiceOverview.css';
+
 import React, { useRef } from 'react';
-import ISO6391 from 'iso-639-1';
 import groupby from 'lodash.groupby';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import { useQuery, gql } from '@apollo/client';
+
 import { Container, Row, Col, Button, InputGroup, FormControl, ListGroup, Card } from 'react-bootstrap';
 import Error from '../Error/Error';
+import { Html5Entities } from 'html-entities';
 
-import './ServiceOverview.css';
+const htmlEntities = new Html5Entities();
 
 export interface ServiceDetailData {
     id: string;
@@ -45,7 +47,9 @@ interface ServiceQueryResult {
     creators: [{
         name: string
     }];
-    language: string;
+    language: {
+        name: string
+    };
     subjects: [{
         subject: string,
         subjectScheme: string
@@ -80,7 +84,9 @@ query getServiceQuery($id: ID!) {
               id
             }
         },
-    	language,
+    	language {
+            name
+        }
     	subjects {
           subject,
           subjectScheme,
@@ -169,7 +175,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
                 tagline: tagline,
                 description: description,
                 creators: creators,
-                language: dataset.language,
+                language: dataset.language.name,
                 fieldsOfScience: fieldsOfScience,
                 pidEntityTypes: pidEntityTypes,
                 category: category,
@@ -220,7 +226,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
                                 </ListGroup.Item>
                                 {service.language &&
                                     <ListGroup.Item>
-                                        <strong>Primary language:</strong> {ISO6391.getName(service.language)}
+                                        <strong>Primary language:</strong> {service.language}
                                     </ListGroup.Item>
                                 }
                                 {service.trl &&
@@ -236,7 +242,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
                                 <ListGroup variant="flush">
                                     {service.fieldsOfScience.map(item => (
                                         <ListGroup.Item key={item}>
-                                            {item}
+                                            {htmlEntities.decode(item)}
                                         </ListGroup.Item>
                                     ))}
                                 </ListGroup>
@@ -249,7 +255,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
                                 <ListGroup variant="flush">
                                     {service.category.map(item => (
                                         <ListGroup.Item key={item}>
-                                            {item}
+                                            {htmlEntities.decode(item)}
                                         </ListGroup.Item>
                                     ))
                                     }
@@ -263,7 +269,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
                                 <ListGroup variant="flush">
                                     {service.pidEntityTypes.map(item => (
                                         <ListGroup.Item key={item}>
-                                            {item}
+                                            {htmlEntities.decode(item)}
                                         </ListGroup.Item>
                                     ))}
                                 </ListGroup>
@@ -276,7 +282,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
                                 <ListGroup variant="flush">
                                     {service.tags.map(item => (
                                         <ListGroup.Item key={item}>
-                                            {item}
+                                            {htmlEntities.decode(item)}
                                         </ListGroup.Item>
                                     ))
                                     }
