@@ -126,12 +126,12 @@ export const Search: React.FunctionComponent = () => {
   const [internalSearchQuery, setInternalSearchQuery] = React.useState("");
 
   const onSearchChange = (
-    e: React.ChangeEvent<FormControl & HTMLInputElement>
+    e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
   ): void => {
     setInternalSearchQuery(e.currentTarget.value);
   };
 
-  const onReset = (e: React.MouseEvent<FormControl & HTMLButtonElement>) => {
+  const onReset = (e: React.MouseEvent<typeof FormControl & HTMLButtonElement>) => {
     setInternalSearchQuery("");
   };
 
@@ -200,7 +200,7 @@ export const SearchResults: React.FunctionComponent<Props> = (props) => {
   };
 
   const resetFilters = (
-    e: React.MouseEvent<FormControl & HTMLButtonElement>
+    e: React.MouseEvent<typeof FormControl & HTMLButtonElement>
   ) => {
     setDisciplines([]);
     setPidTypes([]);
