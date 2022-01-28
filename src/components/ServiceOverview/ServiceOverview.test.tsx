@@ -18,15 +18,31 @@ const mocks = [
           id: 'https://handle.test.datacite.org/10.24427/141E-N846',
           doi: '10.24427/141E-N846',
           titles: [{
-            title: "This is a test service."
+            title: "This is a test service.",
+            titleType: "Other"
+          }],
+          language: [{
+            name: "English"
           }],
           descriptions: [{
             description: "This test service is rendered using mocked data.",
             descriptionType: ""
           }],
           creators: [{
-            name: "Example Inc"
-          }]
+            name: "Example Inc",
+            type: "Organization",
+            affiliation: [
+              {
+                id: "https://ror.org/04wxnsj81"
+              }
+            ]
+          }],
+          subjects: [
+            {
+              subject: "FOS: Computer and information sciences",
+              subjectScheme: "Fields of Science and Technology (FOS)"
+            }
+          ]
         },
       },
     },

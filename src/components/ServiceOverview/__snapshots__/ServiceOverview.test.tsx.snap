@@ -10,8 +10,113 @@ exports[`renders 1`] = `
 
 exports[`renders 2`] = `
 <div>
-  <p>
-    Service not found.
-  </p>
+  <div
+    class="ServiceOverview"
+  >
+    <div
+      class="container"
+    >
+      <h2>
+        This is a test service.
+         
+        <small
+          class="text-muted"
+        />
+      </h2>
+      <div
+        class="row"
+      >
+        <div
+          class="col-sm-8"
+        >
+          <p>
+            Provided by: 
+            Example Inc
+          </p>
+          <p>
+            This test service is rendered using mocked data.
+          </p>
+          <p>
+            <a
+              class="btn btn-primary"
+              href="https://handle.test.datacite.org/10.24427/141E-N846"
+            >
+              Access Service
+            </a>
+          </p>
+        </div>
+        <div
+          class="col-sm-4"
+        >
+          <div
+            class="card"
+          >
+            <div
+              class="card-header"
+            >
+              General
+            </div>
+            <div
+              class="list-group"
+            >
+              <div
+                class="list-group-item"
+              >
+                <div
+                  class="input-group"
+                >
+                  <div
+                    class="input-group-prepend"
+                  >
+                    <span
+                      class="input-group-text"
+                    >
+                      DOI:
+                    </span>
+                  </div>
+                  <input
+                    aria-describedby="doi"
+                    aria-label="doi"
+                    class="form-control"
+                    readonly=""
+                    value="10.24427/141E-N846"
+                  />
+                  <div
+                    class="input-group-append"
+                  >
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                    >
+                      Copy
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div
+            class="card"
+          >
+            <div
+              class="card-header"
+            >
+              Scientific Field
+            </div>
+            <div
+              class="list-group list-group-flush"
+            >
+              <div
+                class="list-group-item"
+              >
+                Computer and information sciences
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 `;

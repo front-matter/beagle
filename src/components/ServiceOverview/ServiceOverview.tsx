@@ -96,7 +96,7 @@ query getServiceQuery($id: ID!) {
 `;
 
 export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) => {
-    const inputEl = useRef<HTMLInputElement & FormControl>(null);
+    const inputEl = useRef<HTMLInputElement & typeof FormControl>(null);
 
     const fullId = (process.env.NODE_ENV === "production") ? "https://doi.org/" + serviceId : "https://handle.test.datacite.org/" + serviceId;
 
@@ -109,7 +109,7 @@ export const ServiceOverview: React.FunctionComponent<Props> = ({ serviceId }) =
         }
     )
 
-    const copyToClipboard = (e: React.FormEvent<HTMLButtonElement>): void => {
+    const copyToClipboard = (e: React.MouseEvent): void => {
 
         if (inputEl && inputEl.current) {
             inputEl.current.select();
