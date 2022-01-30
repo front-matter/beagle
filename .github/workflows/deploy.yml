@@ -41,12 +41,3 @@ jobs:
         dist-id: ${{ secrets.STAGE_CLOUDFRONT_DISTRIBUTION_ID }}
         invalidation: /
         delete-removed: true
-
-    - name: Slack notification
-      id: slack
-      uses: slackapi/slack-github-action@v1.18.0
-      with:
-        channel-id: 'C082HTBD1'
-        slack-message: 'A new version of PID Services has been deployed to stage.'
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
