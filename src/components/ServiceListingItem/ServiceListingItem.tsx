@@ -16,10 +16,6 @@ type Props = {
     service: ServiceListingData;
 };
 
-type State = {
-
-};
-
 export const ServiceListingItem: React.FunctionComponent<Props> = ({ service }) => {
     return (
         <Card>

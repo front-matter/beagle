@@ -29,9 +29,6 @@ type Props = {
     serviceId?: string;
 };
 
-interface ParamTypes {
-    serviceId: string
-}
 
 interface ServiceQueryResult {
     id: string;
