@@ -1,8 +1,7 @@
 name: Deploy to Staging
 on:
-  push:
-    branches:
-      - 'master'
+  release:
+    types: [published]
 jobs:
 
   run:
@@ -24,7 +23,7 @@ jobs:
         cache: 'npm'
 
     - name: Setup ENV files
-      run: cp .env.stage .env;
+      run: cp .env.production .env;
 
     - name: Run build and test
       run: |
@@ -36,9 +35,9 @@ jobs:
       uses: reggionick/s3-deploy@v2
       with:
         folder: build
-        bucket: ${{ secrets.STAGE_S3_BUCKET }}
+        bucket: ${{ secrets.S3_BUCKET }}
         bucket-region: ${{ secrets.S3_BUCKET_REGION }}
-        dist-id: ${{ secrets.STAGE_CLOUDFRONT_DISTRIBUTION_ID }}
+        dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
         invalidation: /
         delete-removed: true
 
@@ -47,6 +46,6 @@ jobs:
       uses: slackapi/slack-github-action@v1.18.0
       with:
         channel-id: 'C082HTBD1'
-        slack-message: 'A new version of PID Services has been deployed to stage.'
+        slack-message: 'A new version of PID Services has been deployed to production.'
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
