@@ -30,7 +30,7 @@
     "react-ga": "^3.3.0",
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.1",
     "react-syntax-highlighter": "^15.4.5",
     "typescript": "^3.7.7",
     "use-location-state": "^2.5.0"
